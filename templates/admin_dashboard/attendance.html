@@ -1,0 +1,115 @@
+{% load static %}
+{% include 'admin_dashboard/includes/header.html' %}
+
+
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+                                <li class="active"><a href="#description">Check-In</a></li>
+                                <li><a href="#reviews">Check-Out</a></li>
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+                                <div class="product-tab-list tab-pane fade active in" id="description">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad">
+
+                                   <table class="table table-striped ">
+                                            <thead>
+                                            <th>No</th>
+                                            <th>Member</th>
+                                            <th>Guest</th>
+                                            <th>Check-In time</th>
+                                            <th>Check-Out time</th>
+                                            <th>Status</th>
+                                            </thead>
+
+                                            <tr>
+{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
+                                            <td>1</td>
+                                            <td> Kabera Alexis</td>
+                                            <td> - </td>
+                                            <td> 20:30-11-09-2021 </td>
+                                            <td> - </td>
+                                            <td> <btn class="btn btn-warning"> checked-in </btn> </td>
+                                            </tr>
+
+                                            <tr>
+{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
+                                            <td>2</td>
+                                            <td> - </td>
+                                            <td> Jimmy Shyaka </td>
+                                            <td> 20:30-11-09-2021 </td>
+                                            <td> - </td>
+                                            <td> <btn class="btn btn-warning"> checked-in </btn> </td>
+                                            </tr>
+
+                                        </table>
+
+                               {% comment %}  {% else %}
+                                   <p>No available info</p>
+                                   {% endif %}{% endcomment %}
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+
+                                    <table class="table table-striped ">
+                                            <thead>
+                                            <th>No</th>
+                                            <th>Member</th>
+                                            <th>Guest</th>
+                                            <th>Check-In time</th>
+                                            <th>Check-Out time</th>
+                                            <th>Status</th>
+                                            </thead>
+
+                                            <tr>
+{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
+                                            <td>1</td>
+                                            <td> Kabera Alexis</td>
+                                            <td> - </td>
+                                            <td> 20:30-11-09-2021 </td>
+                                            <td> 15:30-11-09-2021 </td>
+                                            <td> <btn class="btn btn-danger"> checked-out </btn></td>
+                                            </tr>
+
+                                            <tr>
+{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
+                                            <td>2</td>
+                                            <td> - </td>
+                                            <td> Jimmy Shyaka </td>
+                                            <td> 20:30-11-09-2021 </td>
+                                            <td> 17:30-11-09-2021 </td>
+                                            <td><btn class="btn btn-danger"> checked-out </btn></td>
+                                            </tr>
+
+                                          </table>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

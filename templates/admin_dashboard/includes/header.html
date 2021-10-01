@@ -1,0 +1,205 @@
+{% load static %}
+{% include 'admin_dashboard/includes/head.html' %}
+
+<body>
+    <!--[if lt IE 8]>
+		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+	<![endif]-->
+    <!-- Start Left menu area -->
+    <div class="left-sidebar-pro">
+        <nav id="sidebar" class="">
+            <div class="sidebar-header mt-5">
+                <br><a href=""><img class="main-logo mt-5" src="{% static 'img/logo.png' %}" alt="" /></a>
+                <strong><a href=""><img src="" alt="" />CAETS</a></strong>
+            </div>
+            <div class="left-custom-menu-adp-wrap comment-scrollbar mt-5">
+                <nav class="sidebar-nav left-sidebar-menu-pro">
+                    <ul class="metismenu" id="menu1">
+
+                <li class="active">
+
+                    <a class="has-arrow" href="index.html">
+								   <span class="educate-icon educate-home icon-wrap"></span>
+								   <span class="mini-click-non">Dashboard</span>
+								</a>
+                    <ul class="submenu-angle" aria-expanded="false">
+                        <li><a title="Add Professor" href="/welcome/user"><span class="mini-sub-pro fa fa-group"> Register admins</span></a></li>
+                    </ul>
+                </li>
+
+                 <li class="">
+                    <a class="has-arrow" href="">
+								   <span class="mini-sub-pro fa fa-user-circle"></span>
+								   <span class="mini-click-non">Membership</span>
+								</a>
+                    <ul class="submenu-angle" aria-expanded="false">
+                        <li><a title="Add Professor" href="/view/member"><span class="mini-sub-pro fa fa-address-book-o"> Members</span></a></li>
+                        <li><a title="Add Professor" href="/view/guest"><span class="mini-sub-pro fa fa-handshake-o"> Guests</span></a></li>
+                        <li><a title="Add Professor" href="/view/department"><span class="mini-sub-pro fa fa-sitemap"> Departments</span></a></li>
+                    </ul>
+                </li>
+
+                <li class="">
+                    <a class="has-arrow" href="">
+								   <span class="mini-sub-pro fa fa-map-marker"></span>
+								   <span class="mini-click-non">Track</span>
+								</a>
+                    <ul class="submenu-angle" aria-expanded="false">
+                        <li><a title="Add Professor" href="/view/attendance"><span class="mini-sub-pro fa fa-pencil-square-o"> Attendance</span></a></li>
+                        <li><a title="Add Professor" href="/finance/info"><span class="mini-sub-pro fa fa-money"> Finance info</span></a></li>
+
+                    </ul>
+                </li>
+
+                    </ul>
+                </nav>
+            </div>
+        </nav>
+    </div>
+
+    <!-- End Left menu area -->
+    <!-- Start Welcome area -->
+    <div class="all-content-wrapper">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="logo-pro">
+                        <a href="index.html"><img class="main-logo" src="img/logo/logo.png" alt="" /></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="header-advance-area">
+            <div class="header-top-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="header-top-wraper">
+                                <div class="row">
+                                    <div class="col-lg-1 col-md-0 col-sm-1 col-xs-12">
+                                        <div class="menu-switcher-pro">
+                                            <button type="button" id="sidebarCollapse" class="btn bar-button-pro header-drl-controller-btn btn-info navbar-btn">
+													<i class="educate-icon educate-nav"></i>
+												</button>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
+                                        <div class="header-top-menu tabl-d-n">
+                                            <ul class="nav navbar-nav mai-top-nav">
+                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
+                                                </li>
+
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
+                                        <div class="header-right-info">
+                                            <ul class="nav navbar-nav mai-top-nav header-right-menu">
+
+                                                <li class="nav-item"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-bell" aria-hidden="true"></i><span class="indicator-nt"></span></a>
+                                                    <div role="menu" class="notification-author dropdown-menu animated zoomIn">
+                                                        <div class="notification-single-top">
+                                                            <h1>Notifications</h1>
+                                                        </div>
+                                                        <ul class="notification-menu">
+                                                            <li>
+                                                            </li>
+                                                        </ul>
+
+                                                    </div>
+                                                </li>
+                                                <li class="nav-item">
+                                                    <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+															<img src="img/product/pro4.jpg" alt="" />
+															<span class="admin-name">Mr. Alexis</span>
+															<i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
+														</a>
+                                                    <ul role="menu" class="dropdown-header-top author-log dropdown-menu animated zoomIn">
+                                                        <li><a href="#"><span class="edu-icon edu-home-admin author-log-ic"></span>My Account</a>
+                                                        </li>
+
+                                                    </ul>
+                                                </li>
+                                                <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle"><i class="educate-icon educate-menu"></i></a>
+
+                                                    <div role="menu" class="admintab-wrap menu-setting-wrap menu-setting-wrap-bg dropdown-menu animated zoomIn">
+                                                        <ul class="nav nav-tabs custon-set-tab">
+                                                            <li class="active"><a data-toggle="tab" href="#Settings">Settings</a>
+                                                            </li>
+                                                        </ul>
+                                                        <div class="tab-content custom-bdr-nt">
+
+
+                                                            <div id="Settings" class="tab-pane fade in active">
+                                                                <div class="setting-panel-area">
+                                                                    <div class="note-heading-indicate">
+                                                                        <h2><i class="fa fa-gears"></i> Settings Panel</h2>
+                                                                    </div>
+                                                                    <ul class="setting-panel-list">
+                                                                        <li>
+                                                                            <div class="checkbox-setting-pro">
+                                                                                <div class="checkbox-title-pro">
+                                                                                    <h2>Show notifications</h2>
+                                                                                    <div class="ts-custom-check">
+                                                                                        <div class="onoffswitch">
+                                                                                            <input type="checkbox" name="collapsemenu" class="onoffswitch-checkbox" id="example">
+                                                                                            <label class="onoffswitch-label" for="example">
+																									<span class="onoffswitch-inner"></span>
+																									<span class="onoffswitch-switch"></span>
+																								</label>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </li>
+
+                                                                    </ul>
+
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                    </div>
+                                                </ul>
+                                                 </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Mobile Menu start -->
+
+            <!-- Mobile Menu end -->
+            <div class="breadcome-area">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="breadcome-list single-page-breadcome">
+                                <div class="row">
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    </div>
+                                    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                        <ul class="breadcome-menu">
+{% comment %}
+                                            {% if request.session.user_session %}
+{% endcomment %}
+                                            <li ><a href="#"><span class="text-danger ">Welcome To Campus Automatic Exit & Entrance Tracking System Admin Dashboard</span></a> <span class="bread-slash">/</span>
+{% comment %}
+                                             {% endif %}
+{% endcomment %}
+
+                                            </li>
+                                            <li><span class="bread-blod">CAETS</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
