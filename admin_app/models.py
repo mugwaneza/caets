@@ -13,7 +13,7 @@ class roles(models.Model):
      return self.description
 
 class department(models.Model):
-    depname = models.CharField(max_length=255)
+    depname = models.CharField(max_length=255,blank=False)
     description = models.CharField(max_length=255, blank=True)
     is_active = models.BooleanField(default='1')
     created_at = models.DateTimeField(auto_now_add=True)

@@ -15,35 +15,27 @@
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
                                     <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
-                                                      <form action="" class="needsclick add-professors " autocomplete="off" method="post" enctype="multipart/form-data">
+                                                      <form action="" class="needsclick addcourse" autocomplete="off" method="post" >
 
                                                             {% csrf_token %}
 
                                                             <div class="row">
                                                             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12 col-md-offset-1">
 
-                                                                  {% comment %} {% for message in messages %}
+                                                                   {% for message in messages %}
                                                             <div class="alert {{ message.tags }} alert-dismissible" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                             </button>
                                                             {{ message | safe }}
                                                                </div>
-                                                         {% endfor %}{% endcomment %}
+                                                         {% endfor %}
                                                                 <div class="form-group">
-                                                                      <select name="department" type="text" class="form-control">
-                                                                       <option value="">select department</option>
-                                                                       <option value="student">Finance</option>
-                                                                       <option value="staff">Registry</option>
-                                                                       <option value="staff">HOD</option>
-                                                                       <option value="staff">Administration</option>
-                                                                       <option value="staff">Cantine</option>
-                                                                       <option value="staff">Library</option>
-                                                                       <option value="staff">Stadium</option>
-                                                                     </select>
+                                                                  <input type="text" name="department" placeholder="Department name" type="text" class="form-control">
+
                                                                 </div>
                                                             <div class="form-group">
                                                                 <textarea type="text" name="description" class="form-control" placeholder="Description"></textarea>
@@ -68,6 +60,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
+                                                        {% if alldepartments %}
 
                                                        <table class="table table-striped">
                                                            <thead>
@@ -79,47 +72,41 @@
                                                            <th>Status</th>
                                                            </thead>
                                                           <tbody>
+                                                            {% for departments in alldepartments %}
+                                                           <tr>
+                                                               <td> {{ forloop.counter0|add:alldepartments.start_index }}</td>
+                                                               <td>{{ departments.depname }}</td>
+                                                               <td>{{ departments.description }}</td>
+                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
+                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
+                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
+                                                            </tr>
+                                                           {% endfor %}
 
-                                                           <tr>
-                                                               <td>1</td>
-                                                               <td>Finance</td>
-                                                               <td>Finance department</td>
-                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
-                                                            </tr>
-                                                           <tr>
-                                                               <td>2</td>
-                                                               <td>Library</td>
-                                                               <td>Library department</td>
-                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
-                                                            </tr>
 
                                                             </tbody>
                                                        </table>
                                                     <!--
                                                     code to display blog posts ...
                                                     -->
-                                                {% comment %}    <div class="pagination">
+                                                    <div class="pagination">
                                                     <span class="step-links">
-                                                        {% if allDistricts.has_previous %}
-                                                            <b><a href="?page={{ allDistricts.previous_page_number }}">previous</a></b>
+                                                        {% if alldepartments.has_previous %}
+                                                            <b><a href="?page={{ alldepartments.previous_page_number }}">previous</a></b>
                                                         {% endif %}
 
                                                         &nbsp;&nbsp;&nbsp; <span class="current">
-                                                          <b>Page {{ allDistricts.number }}</b>
+                                                          <b>Page {{ alldepartments.number }}</b>
                                                           </span>&nbsp;&nbsp;&nbsp;
 
-                                                        {% if allDistricts.has_next %}
-                                                            <b><a href="?page={{ allDistricts.next_page_number }}">next</a></b>
+                                                        {% if alldepartments.has_next %}
+                                                            <b><a href="?page={{ alldepartments.next_page_number }}">next</a></b>
                                                         {% endif %}
                                                     </span>
                                                     </div>
                                                  {% else %}
                                                          <p> No information available</p>
-                                                 {% endif %}{% endcomment %}
+                                                 {% endif %}
 
                                                     </div>
                                                 </div>

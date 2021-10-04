@@ -1,5 +1,10 @@
+from django.contrib import messages
 from django.http import request
 from django.shortcuts import render, redirect
+from django.core.paginator import Paginator
+from admin_app.models import department
+
+
 
 # Create your views here.
 def Login (request):      #Admin Login
@@ -179,35 +184,26 @@ def AddDepartment(request ):
 
         dataDict = dict()
 
-        # if users.objects.filter(email=request.POST.get('email')).exists():   #check if  email already exist
-        #      messages.error(request, 'Email was already used')
-        #      return HttpResponseRedirect('/add/user', dataDict)
-        #
-        # if users.objects.filter(username=request.POST.get('username')).exists():   #check if  username already exist
-        #     messages.error(request, 'User name was already used')
-        #     return HttpResponseRedirect('/add/user', dataDict)
-        # else:
-        #     # get form inputs and save it
-        #     data = users()
-        #     data.first_name = request.POST.get('firstname')
-        #     data.last_name = request.POST.get('lastname')
-        #     data.email = request.POST.get('email')
-        #     data.username = request.POST.get('username')
-        #     Plain_password = request.POST.get('password')
-        #     data.password = make_password(Plain_password)
-        #     data.save()
-        #
-        #     messages.success(request, 'Account was created successfully')
-        #     return HttpResponseRedirect('/add/user',dataDict)
+        if department.objects.filter(depname=request.POST.get('department')).exists():   #check if  department already exist
+             messages.error(request, 'Department was already registered')
+             return redirect('department')
+        else:
+            # get form inputs and save it
+            data = department()
+            data.depname = request.POST.get('department')
+            data.description = request.POST.get('description')
+            data.save()
+
+            messages.success(request, 'Department was created successfully')
+            return redirect('department')
     else:
 
-        # data = users.objects.filter().all()
-        # paginator = Paginator(data, 10)
-        # page_number = request.GET.get('page')
-        # allusers = paginator.get_page(page_number)
-        # while it is get method
-        # return render(request, 'admin_dashboard/users.html', {'allusers' : allusers})
-        return render(request, 'admin_dashboard/departments.html', )
+        data = department.objects.filter().all()
+        paginator = Paginator(data, 10)
+        page_number = request.GET.get('page')
+        alldepartments = paginator.get_page(page_number)
+
+        return render(request, 'admin_dashboard/departments.html', {'alldepartments' : alldepartments} )
 
 
 def ViewAttendance(request ):
