@@ -2,9 +2,7 @@
 {% include 'admin_dashboard/includes/head.html' %}
 
 <body>
-    <!--[if lt IE 8]>
-		<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
-	<![endif]-->
+
     <!-- Start Left menu area -->
     <div class="left-sidebar-pro">
         <nav id="sidebar" class="">
@@ -33,9 +31,11 @@
 								   <span class="mini-click-non">Membership</span>
 								</a>
                     <ul class="submenu-angle" aria-expanded="false">
+                        <li><a title="Add Professor" href="/view/role"><span class="mini-sub-pro fa fa-sitemap"> Roles</span></a></li>
+                        <li><a title="Add Professor" href="/view/department"><span class="mini-sub-pro fa fa-sitemap"> Departments</span></a></li>
+
                         <li><a title="Add Professor" href="/view/member"><span class="mini-sub-pro fa fa-address-book-o"> Members</span></a></li>
                         <li><a title="Add Professor" href="/view/guest"><span class="mini-sub-pro fa fa-handshake-o"> Guests</span></a></li>
-                        <li><a title="Add Professor" href="/view/department"><span class="mini-sub-pro fa fa-sitemap"> Departments</span></a></li>
                     </ul>
                 </li>
 
@@ -186,7 +186,7 @@
 {% comment %}
                                             {% if request.session.user_session %}
 {% endcomment %}
-                                            <li ><a href="#"><span class="text-danger ">Welcome To Campus Automatic Exit & Entrance Tracking System Admin Dashboard</span></a> <span class="bread-slash">/</span>
+                                            <li ><a href="#"><span class="text-danger ">Welcome to CAETS Admin Dashboard</span></a> <span class="bread-slash">/</span>
 {% comment %}
                                              {% endif %}
 {% endcomment %}

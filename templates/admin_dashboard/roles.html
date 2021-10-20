@@ -9,8 +9,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description"> New Department</a></li>
-                                <li><a href="#reviews"> All Department</a></li>
+                                <li class="active"><a href="#description"> New Role</a></li>
+                                <li><a href="#reviews"> All Roles</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -18,7 +18,7 @@
                                         <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
-                                                      <form action="{% url 'department' %}" class="needsclick addcourse" autocomplete="off" method="post" >
+                                                      <form action="{% url 'role' %}" class="needsclick addcourse" autocomplete="off" method="post" >
 
                                                             {% csrf_token %}
 
@@ -34,7 +34,7 @@
                                                                </div>
                                                          {% endfor %}
                                                                 <div class="form-group">
-                                                                  <input type="text" name="department" placeholder="Department name" type="text" class="form-control">
+                                                                  <input type="text" name="rolename" placeholder="Role name" type="text" class="form-control">
 
                                                                 </div>
                                                             <div class="form-group">
@@ -60,23 +60,23 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                                        {% if alldepartments %}
+                                                        {% if allroles %}
 
                                                        <table class="table table-striped">
                                                            <thead>
                                                            <th>No</th>
-                                                           <th>Department name</th>
+                                                           <th>Role name</th>
                                                            <th>Description</th>
                                                            <th>Edit</th>
                                                            <th>Delete</th>
                                                            <th>Status</th>
                                                            </thead>
                                                           <tbody>
-                                                            {% for departments in alldepartments %}
+                                                            {% for roles in allroles %}
                                                            <tr>
-                                                               <td> {{ forloop.counter0|add:alldepartments.start_index }}</td>
-                                                               <td>{{ departments.depname }}</td>
-                                                               <td>{{ departments.description }}</td>
+                                                               <td> {{ forloop.counter0|add:allroles.start_index }}</td>
+                                                               <td>{{ roles.rolename }}</td>
+                                                               <td>{{ roles.description }}</td>
                                                                <td><button class="btn-sm btn-primary">Edit</button></td>
                                                                <td><button class="btn-sm btn-danger">Delete</button></td>
                                                                <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
@@ -91,16 +91,16 @@
                                                     -->
                                                     <div class="pagination">
                                                     <span class="step-links">
-                                                        {% if alldepartments.has_previous %}
-                                                            <b><a href="?page={{ alldepartments.previous_page_number }}">previous</a></b>
+                                                        {% if allroles.has_previous %}
+                                                            <b><a href="?page={{ allroles.previous_page_number }}">previous</a></b>
                                                         {% endif %}
 
                                                         &nbsp;&nbsp;&nbsp; <span class="current">
-                                                          <b>Page {{ alldepartments.number }}</b>
+                                                          <b>Page {{ allroles.number }}</b>
                                                           </span>&nbsp;&nbsp;&nbsp;
 
-                                                        {% if alldepartments.has_next %}
-                                                            <b><a href="?page={{ alldepartments.next_page_number }}">next</a></b>
+                                                        {% if allroles.has_next %}
+                                                            <b><a href="?page={{ allroles.next_page_number }}">next</a></b>
                                                         {% endif %}
                                                     </span>
                                                     </div>

@@ -28,14 +28,7 @@
 					required: true,
 					minlength:8,
 				},
-				categoryname:
-				{
-					required: true,
-				},
-				institutionname:
-				{
-					required: true,
-				},
+
 				photo:
 				{
 					required: true,
@@ -49,44 +42,16 @@
                  minlength:10,
                  maxlength:10,
 				},
-				servicecat:
+				nid:
 				{required: true,
 				},
-				compcat:
-				{required: true,
-				},
-				institu:
-				{required: true,
-				},
-				servicetype:
-				{required: true,
-				},
-				service_cat:
-				{
-				required: true,
-				},
-				dealtitle:
-				{
-				required: true,
-				},
-				price:
-				{
-				required: true,
-				},
-				servicetypeID:
-				{
-				required: true,
-				},
-				provincename:
-					{
-				required: true,
-				},
+
 				district:
 					{
 				required: true,
 				},
 
-				districtname:
+				district:
 					{
 				required: true,
 				},
@@ -95,26 +60,35 @@
 					{
 				required: true,
 				},
-				business:
-					{
-				required: true,
-				},
-
 				phonenumber:
 					{
 				required: true,
 				 minlength:10,
                  maxlength:10,
 				},
-				pricingclass:
+				department:
 					{
 				required: true,
-
 				},
-				pricingclass_price:
+				fullname:
 					{
 				required: true,
-
+				},
+				village:
+					{
+				required: true,
+				},
+				sector:
+					{
+				required: true,
+				},
+				visit_reason:
+					{
+				required: true,
+				},
+                 rolename:
+				{
+                  required: true
 				}
 			},
 			messages:
@@ -140,14 +114,6 @@
 				{
 					required: 'Please enter your email address',
 				},
-				categoryname:
-				{
-					required: 'Please enter company category',
-				},
-				institutionname:
-				{
-					required: 'Please enter institution name',
-				},
 				photo:
 				{
 					required: 'Photo is required',
@@ -158,73 +124,49 @@
 				},
 				tel:
 				{
-					required: 'Please enter institution phone number',
-				},
-               servicecat:
-				{
-					required: 'Please enter service category name',
-				},
-				compcat:
-				{
-					required: 'Please select service category',
-				},
-				institu:
-				{
-					required: 'Please select  institution name',
-				},
-				servicetype:
-				{
-					required: 'Please enter service type',
-				},
-				service_cat:
-				{
-					required: 'Please select service category',
-				},
-				servicetypeID:
-				{
-					required: 'Please select service type',
-				},
-               dealtitle:
-				{
-					required: 'Please enter service deal title',
-				},
-				price:
-				{
-					required: 'Please enter price',
-				},
-				provincename:
-				{
-					required: 'Province can not be empty',
-				},
-				district:
-				{
-					required: 'District can be empty',
-				},districtname:
+					required: 'Telephone is required',
+				}
+                ,districtname:
 				{
 					required: 'District can be empty',
 				},
-				sectorname:
-				{
-					required: 'Sector can not be empty',
-				},phonenumber:
+				phonenumber:
 				{
 					required: 'please enter telephone',
 				},
-				business:
+            department:
 				{
-					required: 'please enter business',
+					required: 'Select department',
 				},
-				pricingclass:
+            fullname:
 				{
-					required: 'Pricing is required',
-				},
-				pricingclass_price:
+					required: 'Full name is required',
+				}
+                  ,
+            village:
 				{
-					required: 'Price is required',
+					required: 'Village is  required',
+				} ,
+            sector:
+				{
+					required: 'sector is  required',
 				},
-
-
-
+            district:
+				{
+					required: 'district is  required',
+				},
+             nid:
+				{
+					required: 'Nation Id is  required',
+				},
+             visit_reason:
+				{
+					required: 'Visit reason is  required',
+				},
+				rolename:
+				{
+					required: 'Role is required'
+				}
 
 			},					
 			
@@ -260,6 +202,10 @@
 					required: true,
 					minlength: 3,
 					maxlength: 20
+				},
+                rolename:
+				{
+                  required: true
 				}
 			},
 			messages:
@@ -281,6 +227,10 @@
 				confarmpassword:
 				{
 					required: 'Please enter your confarm password'
+				},
+				rolename:
+				{
+					required: 'Role is required'
 				}
 				
 			},					
@@ -352,6 +302,11 @@
 					required: true,
 					minlength: 3,
 					maxlength: 20
+				},
+				rolename:
+				{
+                  required: true
+
 				}
 			},
 			messages:
@@ -408,6 +363,10 @@
 				confarmpassword:
 				{
 					required: 'Please enter your confarm password'
+				},
+				rolename:
+				{
+					required: 'Role name is required'
 				}
 				
 			},					

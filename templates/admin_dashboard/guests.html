@@ -10,8 +10,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design">
-                                <li class="active"><a href="#description"> New Guest</a></li>
-                                <li><a href="#reviews"> View Guests</a></li>
+                                <li class="active"><a href="#description"> New Guest Booking</a></li>
+                                <li><a href="#reviews"> View Guest Bookings </a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="description">
@@ -37,27 +37,17 @@
 
                                                                 <div class="form-group">
                                                                     <select name="department" type="text" class="form-control">
-                                                                       <option value="">select department</option>
-                                                                       <option value="student">Finance</option>
-                                                                       <option value="staff">Registry</option>
-                                                                       <option value="staff">HOD</option>
-                                                                       <option value="staff">Administration</option>
-                                                                       <option value="staff">Cantine</option>
-                                                                       <option value="staff">Library</option>
-                                                                       <option value="staff">Stadium</option>
+                                                                       <option value="">-- Select department --</option>
+                                                                         {% for departmernt in alldepts %}
+                                                                       <option value="{{ departmernt.id }}">{{ departmernt.depname }}</option>
+                                                                           {% endfor %}
+
                                                                      </select>
                                                                  </div>
 
-
-
-                                                                <div class="form-group col-md-6">
-                                                                    <input name="firstname" type="text" class="form-control" placeholder="First Name">
+                                                                <div class="form-group ">
+                                                                    <input name="fullname" type="text" class="form-control" placeholder="Full Name">
                                                                 </div>
-
-                                                                <div class="form-group col-md-6">
-                                                                    <input name="lastname" type="text" class="form-control" placeholder="Last name">
-                                                                </div>
-
 
                                                                 <div class="form-group col-md-6">
                                                                     <input name="village" type="text" class="form-control" placeholder="Village">
@@ -98,50 +88,40 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-
+                                                      {% if allguests %}
                                                        <table class="table table-striped">
                                                            <thead>
                                                            <th>No</th>
                                                            <th>First name</th>
-                                                           <th>Last name</th>
-                                                           <th>Email</th>
                                                            <th>Telephone</th>
                                                            <th>Address</th>
-                                                           <th>Department</th>
+                                                           <th>Target department</th>
                                                            <th>Edit</th>
                                                            <th>Delete</th>
                                                            <th>Status</th>
                                                            </thead>
                                                           <tbody>
+                                                       {% for guets in allguests %}
+                                                           <tr>
+                                                               <td> {{ forloop.counter0|add:allguests.start_index }}</td>
+                                                               <td>{{ guets.fullname }}</td>
+                                                               <td>{{ guets.tel_no }}</td>
+                                                               <td>{{ guets.village }},{{ guets.sector }}, {{ guets.district }}</td>
+                                                               <td>{{ guets.dept.depname }}</td>
+                                                               <td><button class="btn-sm btn-success">Approve</button></td>
+                                                               <td><button class="btn-sm btn-warning">Reject</button></td>
+                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
+                                                            </tr>
+                                                        {% endfor %}
 
-{#                                                           <tr> <td> {{ forloop.counter0|add:allusers.start_index }}</td>#}
-                                                           <tr> <td>1</td>
-                                                               <td>Alexis</td>
-                                                               <td>Kabera</td>
-                                                                <td>mugwales@gmail.com</td>
-                                                               <td>0785984505</td>
-                                                               <td>Kigali,Kacyiru,Kamatamu, Ituze</td>
-                                                               <td>Finance</td>
-                                                               <td><button class="btn-sm btn-success">Approve</button></td>
-                                                               <td><button class="btn-sm btn-warning">Reject</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
-                                                            </tr>
-                                                            <tr> <td>2</td>
-                                                               <td>Kevin</td>
-                                                               <td>Semana</td>
-                                                                <td>semuy@gmail.com</td>
-                                                               <td>0785484510</td>
-                                                               <td>Kigali,Kimihurura,Kamukina, Ituze</td>
-                                                               <td>Student</td>
-                                                               <td><button class="btn-sm btn-success">Approve</button></td>
-                                                               <td><button class="btn-sm btn-warning">Reject</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
-                                                            </tr>
 
 
                                                             </tbody>
 
                                                        </table>
+                                                           {% else %}
+                                                         <p> No information available</p>
+                                                 {% endif %}
 
                                                     <!--
                                                     code to display blog posts ...
