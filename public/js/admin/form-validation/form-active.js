@@ -89,6 +89,18 @@
                  rolename:
 				{
                   required: true
+				},
+                 student:
+				{
+                  required: true
+				},
+                 amount:
+				{
+                  required: true
+				},
+                 balance:
+				{
+                  required: true
 				}
 			},
 			messages:
@@ -166,6 +178,18 @@
 				rolename:
 				{
 					required: 'Role is required'
+				},
+                student:
+				{
+					required: 'Student is required'
+				},
+                amount:
+				{
+					required: 'Amount is required'
+				},
+                balance:
+				{
+					required: 'Balance is required'
 				}
 
 			},					

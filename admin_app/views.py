@@ -1,9 +1,10 @@
 from django.contrib import messages
-from django.http import request, HttpResponseRedirect
+from django.db.models import Q
+from django.http import request, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from admin_app.models import department, roles, guest_application, members_personalinfo
-
+from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info
+from .Serializers import MembersSerializer
 
 
 # Create your views here.
@@ -83,9 +84,11 @@ def AddUser(request ):
         # paginator = Paginator(data, 10)
         # page_number = request.GET.get('page')
         # allusers = paginator.get_page(page_number)
+
+        alladmins = MembersSerializer(members_personalinfo.objects.filter(~Q(role__rolename='Student')) , many=True)
+
         # while it is get method
-        # return render(request, 'admin_dashboard/users.html', {'allusers' : allusers})
-        return render(request, 'admin_dashboard/users.html', )
+        return render(request, 'admin_dashboard/users.html', {'alladmins' : alladmins})
 
 
 
@@ -286,32 +289,28 @@ def ViewFinanceInfo(request ):
 
         dataDict = dict()
 
-        # if users.objects.filter(email=request.POST.get('email')).exists():   #check if  email already exist
-        #      messages.error(request, 'Email was already used')
-        #      return HttpResponseRedirect('/add/user', dataDict)
-        #
-        # if users.objects.filter(username=request.POST.get('username')).exists():   #check if  username already exist
-        #     messages.error(request, 'User name was already used')
-        #     return HttpResponseRedirect('/add/user', dataDict)
-        # else:
-        #     # get form inputs and save it
-        #     data = users()
-        #     data.first_name = request.POST.get('firstname')
-        #     data.last_name = request.POST.get('lastname')
-        #     data.email = request.POST.get('email')
-        #     data.username = request.POST.get('username')
-        #     Plain_password = request.POST.get('password')
-        #     data.password = make_password(Plain_password)
-        #     data.save()
-        #
-        #     messages.success(request, 'Account was created successfully')
-        #     return HttpResponseRedirect('/add/user',dataDict)
+        if finance_info.objects.filter(user_id=request.POST.get('student')).exists():   #check if student already exist
+             messages.error(request, 'Student info already exist in finance, better update')
+             return HttpResponseRedirect('/finance/info', dataDict)
+
+        else:
+            # get form inputs and save it
+            data = finance_info()
+            data.user_id = request.POST.get('student')
+            data.paid_amount = request.POST.get('amount')
+            data.balance = request.POST.get('balance')
+            data.save()
+
+            messages.success(request, 'Account was created successfully')
+            return HttpResponseRedirect('/finance/info',dataDict)
     else:
 
-        # data = users.objects.filter().all()
-        # paginator = Paginator(data, 10)
-        # page_number = request.GET.get('page')
-        # allusers = paginator.get_page(page_number)
+        all_students = MembersSerializer(members_personalinfo.objects.filter(Q(role__rolename='Student')) , many=True)
+        data = finance_info.objects.filter().all()
+        paginator = Paginator(data, 10)
+        page_number = request.GET.get('page')
+        allfinance = paginator.get_page(page_number)
         # while it is get method
-        # return render(request, 'admin_dashboard/users.html', {'allusers' : allusers})
-        return render(request, 'admin_dashboard/finance_info.html', )
+
+        return render(request, 'admin_dashboard/finance_info.html',{'allfinance': allfinance, 'all_students': all_students} )
+        # return JsonResponse( all_students.data, safe=False)

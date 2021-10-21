@@ -19,6 +19,7 @@
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
+
                                                     <form action="{% url 'finance' %}" class=" needsclick add-professors " autocomplete="off" method="post" >
 
                                                            {% csrf_token %}
@@ -26,35 +27,33 @@
                                                         <div class="row">
                                                             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6 col-md-offset-1">
 
-                                                       {% comment %} {% for message in messages %}
+                                                        {% for message in messages %}
                                                             <div class="alert {{ message.tags }} alert-dismissible" role="alert">
                                                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                             </button>
                                                             {{ message | safe }}
                                                                </div>
-                                                        {% endfor %}{% endcomment %}
+                                                        {% endfor %}
+                                                            <div class="form-group ">
+                                                                <select name="student" type="text" class="form-control">
+                                                                   <option value=""> -- select student -- </option>
+                                                                     {% for student in all_students.data %}
+                                                                   <option value="{{ student.id }}"> {{ student.fname }} {{ student.lname }}</option>
+                                                                       {% endfor %}
+                                                                 </select>
+                                                             </div>
+                                                            <div class="form-group col-md-6">
+                                                                <input name="amount" type="number" class="form-control" placeholder="Paid amount">
+                                                            </div>
 
-                                                                <div class="form-group ">
-                                                                    <select name="department" type="text" class="form-control">
-                                                                       <option value="">select student </option>
-                                                                       <option value="student">Karangwa Jule</option>
-                                                                       <option value="staff">Bertirde Rwamucyo</option>
-                                                                     </select>
-                                                                 </div>
+                                                            <div class="form-group col-md-6">
+                                                                <input name="balance" type="number" class="form-control" placeholder="Balance">
+                                                            </div>
 
-
-                                                                <div class="form-group col-md-6">
-                                                                    <input name="amount" type="number" class="form-control" placeholder="Paid amount">
-                                                                </div>
-
-                                                                <div class="form-group col-md-6">
-                                                                    <input name="balance" type="number" class="form-control" placeholder="Balance">
-                                                                </div>
-
-                                                                <div class="form-group">
-                                                                    <input name="submit" id="" type="submit" class="btn-lg btn btn-success col-lg-12" value="Submit">
-                                                                </div>
+                                                            <div class="form-group">
+                                                                <input name="submit" id="" type="submit" class="btn-lg btn btn-success col-lg-12" value="Submit">
+                                                            </div>
                                                             </div>
                                                             </div>
 
@@ -71,7 +70,7 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-
+                                                      {% if allfinance %}
                                                        <table class="table table-striped">
                                                            <thead>
                                                            <th>No</th>
@@ -83,48 +82,41 @@
                                                            </thead>
                                                           <tbody>
 
-{#                                                           <tr> <td> {{ forloop.counter0|add:allusers.start_index }}</td>#}
-                                                           <tr> <td>1</td>
-                                                               <td>Karangwa</td>
-                                                               <td>Jule</td>
-                                                                <td>40000 Rwf</td>
-                                                               <td>0Rwf</td>
+                                                        {% for finance in allfinance %}
+                                                             <tr>
+                                                             <td> {{ forloop.counter0|add:allfinance.start_index }}</td>
+                                                               <td>{{ finance.user.fname }}</td>
+                                                               <td>{{ finance.user.lname }}</td>
+                                                                 <td>{{ finance.paid_amount }} Rwf</td>
+                                                               <td>{{ finance.balance }} Rwf</td>
                                                                <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
                                                             </tr>
-                                                            <tr>
-                                                                 <td>2</td>
-                                                               <td>Rubagumya</td>
-                                                               <td>Brave</td>
-                                                                <td>42000 Rwf</td>
-                                                               <td>1000Rwf</td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>                                                            </tr>
-
+                                                         {% endfor %}
 
                                                             </tbody>
-
                                                        </table>
 
                                                     <!--
                                                     code to display blog posts ...
                                                     -->
-                                             {% comment %}       <div class="pagination">
+                                                    <div class="pagination">
                                                     <span class="step-links">
-                                                        {% if allusers.has_previous %}
-                                                            <b><a href="?page={{ allusers.previous_page_number }}">previous</a></b>
+                                                        {% if allfinance.has_previous %}
+                                                            <b><a href="?page={{ allfinance.previous_page_number }}">previous</a></b>
                                                         {% endif %}
 
                                                         &nbsp;&nbsp;&nbsp; <span class="current">
-                                                          <b>Page {{ allusers.number }}</b>
+                                                          <b>Page {{ allfinance.number }}</b>
                                                           </span>&nbsp;&nbsp;&nbsp;
 
-                                                        {% if allusers.has_next %}
-                                                            <b><a href="?page={{ allusers.next_page_number }}">next</a></b>
+                                                        {% if allfinance.has_next %}
+                                                            <b><a href="?page={{ allfinance.next_page_number }}">next</a></b>
                                                         {% endif %}
                                                     </span>
                                                     </div>
-                                                 {% else %}
+                                                          {% else %}
                                                          <p> No information available</p>
-                                                 {% endif %}{% endcomment %}
+                                                 {% endif %}
 
                                                     </div>
                                                 </div>
