@@ -3,7 +3,7 @@ from django.db.models import Q
 from django.http import request, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info
+from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info, profiles
 from .Serializers import MembersSerializer
 
 
@@ -121,6 +121,14 @@ def AddMember(request ):
             data.email = request.POST.get('email')
             data.address = request.POST.get('address')
             data.save()
+
+            obj = members_personalinfo.objects.latest('id')
+            doc = profiles()
+            doc.user_id2= obj.pk;
+
+            doc.image= request.FILES['profile']
+            doc.save()
+
 
             messages.success(request, 'A member is successfully')
             return HttpResponseRedirect('member',dataDict)

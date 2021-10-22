@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
+import mongoengine
 import os
 from pathlib import Path
 
@@ -44,6 +45,71 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django_python3_ldap',
 ]
+
+
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.common.CommonMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+ROOT_URLCONF = 'caets.urls'
+
+TEMPLATES = [
+    {
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
+]
+
+WSGI_APPLICATION = 'caets.wsgi.application'
+
+
+# Database
+# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
+
+DATABASES = {
+     'default': {
+        'ENGINE': 'django.db.backends.postgresql',   #Postgres  connection
+        'NAME': 'campusdb',
+        'USER': 'postgres',
+        'PASSWORD': 'root',
+        'HOST': 'localhost',
+        'PORT': '5432',  # my port is 3306
+      }
+    ,
+      # 'users': {
+      #   'ENGINE': 'django.db.backends.mysql',
+      #   'NAME': 'isanzure',
+      #   'USER': 'root',
+      #   'PASSWORD': '',
+      #   'HOST': 'localhost',
+      #   'PORT': '3306',  # my port is 3306
+      # }
+}
+
+ #Mongo db connection
+mongoengine.connect(
+     db='caets_documents',
+     host='127.0.0.1',
+     username='',
+     password='')
+#End Mongo db connection
+
+
 # Baseline configuration. Ldap Configuration
 
     # The URL of the LDAP server.
@@ -89,62 +155,6 @@ LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = None
 # management command. Set to None if you allow anonymous queries.
 LDAP_AUTH_CONNECTION_USERNAME = None
 LDAP_AUTH_CONNECTION_PASSWORD = None
-
-
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
-
-ROOT_URLCONF = 'caets.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [os.path.join(BASE_DIR,'templates')],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
-WSGI_APPLICATION = 'caets.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-DATABASES = {
-     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'campusdb',
-        'USER': 'postgres',
-        'PASSWORD': 'root',
-        'HOST': 'localhost',
-        'PORT': '5432',  # my port is 3306
-      }
-    ,
-      # 'users': {
-      #   'ENGINE': 'django.db.backends.mysql',
-      #   'NAME': 'isanzure',
-      #   'USER': 'root',
-      #   'PASSWORD': '',
-      #   'HOST': 'localhost',
-      #   'PORT': '3306',  # my port is 3306
-      # }
-}
 
 
 # Password validation

@@ -1,7 +1,12 @@
+from bson import Int64
 from django.db import models
 
 # Create your models here.
-
+from django.utils.timezone import now
+from mongoengine import Document, StringField, ReferenceField, CASCADE, DateTimeField, BooleanField, ImageField, \
+    FileField, IntField
+from mongoengine.base import fields
+import datetime
 
 
 class roles(models.Model):
@@ -33,6 +38,15 @@ class members_personalinfo(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
      return self.address
+
+class profiles(Document):
+      # user = fields.ReferenceField(members_personalinfo, reverse_delete_rule=CASCADE)
+      user = models.ForeignKey(members_personalinfo,on_delete=models.CASCADE)
+      user_id2 = IntField()
+      image =FileField()
+      comment = StringField(default='profile picture', max_length=255)
+      created_at = DateTimeField(default=datetime.datetime.utcnow)
+
 
 class guest_application(models.Model):
     dept = models.ForeignKey(department, on_delete=models.CASCADE)
