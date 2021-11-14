@@ -1,0 +1,226 @@
+ {% load static %}
+  {% load i18n %}
+
+  {% include "includes/head_header.html" %}
+{#<!doctype html>#}
+{#<html class="no-js" lang="en">#}
+
+
+    <!-- ============================================================== -->
+    <!-- login page  -->
+    <!-- ============================================================== -->
+
+
+  <div class="container">
+                <div class="  col-md-8 offset-2 mt-5">
+
+                         <form action="{% url 'searchb'%}" class="add-professors" autocomplete="off" method="post" >
+                                      {% csrf_token %}
+
+                        <div class="form-group ">
+                           <input name="search" type="text" class="form-control" placeholder="Search your application by your phone number">
+                          </div>
+                     </form>
+
+                </div>
+                <div class="card mt-5  col-md-8 offset-2">
+
+
+                 <h4 class="mt-5 mb-5 text-primary">Your search results</h4>
+
+                <div class="card-body card-lg mb-5 ">
+
+                                 {% if searchres %}
+                                                       <table class="table table-striped">
+                                                           <thead>
+                                                           <th>No</th>
+                                                           <th>First name</th>
+                                                           <th>Telephone</th>
+                                                           <th>Address</th>
+                                                           <th>Target department</th>
+                                                           <th>Edit</th>
+                                                           </thead>
+                                                          <tbody>
+                                                       {% for guets in searchres %}
+                                                           <tr>
+                                                              <td> {{ forloop.counter0  }}</td>
+                                                               <td>{{ guets.fullname }}</td>
+                                                               <td>{{ guets.tel_no }}</td>
+                                                               <td>{{ guets.village }},{{ guets.sector }}, {{ guets.district }}</td>
+                                                               <td>{{ guets.dept.depname }}</td>
+                                                               {% if not guets.is_active%}
+                                                               <td><button class="btn-sm btn-success text-white">Approved</button></td>
+                                                             {% else %}
+                                                             <td><button class="btn-sm btn-warning text-white">Pending</button></td>
+                                                             {% endif %}
+
+                                                            </tr>
+                                                        {% endfor %}
+                                                         </tbody>
+
+                                                       </table>
+
+
+
+                                                    <div class="pagination">
+                                                    <span class="step-links">
+                                                        {% if searchres.has_previous %}
+                                                            <b><a href="?page={{ searchres.previous_page_number }}">previous</a></b>
+                                                        {% endif %}
+
+                                                        &nbsp;&nbsp;&nbsp; <span class="current">
+                                                          <b>Page {{ searchres.number }}</b>
+                                                          </span>&nbsp;&nbsp;&nbsp;
+
+                                                        {% if searchres.has_next %}
+                                                            <b><a href="?page={{ searchres.next_page_number }}">next</a></b>
+                                                        {% endif %}
+                                                    </span>
+                                                    </div>
+                                                 {% else %}
+                                                         <p> No information available</p>
+                                                 {% endif %}
+                                       </div>
+                                    </div>
+                                    </div>
+
+
+
+       <!-- Modal -->
+       <section class="latest-blog spad">
+        <div class="container">
+       <div class="modal fade " style="margin-top: 140px;" id="Aboutmodal" tabindex="-1" role="dialog" aria-labelledby="Aboutmodal" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg " role="document">
+            <div class="modal-content  ">
+              <div class="modal-header">
+                <h5 class="modal-title offset-2 text-info" id="exampleModalLabel">About Campus Automatic Entrance and Exit Tracking System</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body ">
+                <p>The Campus Automatic Entrance & Exit Tracking System is a software application designed to manage the majority of the activities and processes that grant entrance permission to the campus for the security, management, and safety of campus visitors</p>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn  btn-info" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+           </div>
+        </div>
+       </div>
+       </section>
+
+
+                <!-- Partner Logo Section Begin -->
+                <div class="partner-logo mt-5">
+                    <div class="container">
+                        <div class="logo-carousel owl-carousel">
+                            <div class="logo-item">
+                                <div class="tablecell-inner">
+                                    <img src="{% static 'img/logo-carousel/logo-1.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="logo-item">
+                                <div class="tablecell-inner">
+                                    <img src="{% static 'img/logo-carousel/logo-2.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="logo-item">
+                                <div class="tablecell-inner">
+                                    <img src="{% static 'img/logo-carousel/logo-3.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="logo-item">
+                                <div class="tablecell-inner">
+                                    <img src="{% static 'img/logo-carousel/logo-4.png' %}" alt="">
+                                </div>
+                            </div>
+                            <div class="logo-item">
+                                <div class="tablecell-inner">
+                                    <img src="{% static 'img/logo-carousel/logo-5.png' %}" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Partner Logo Section End -->
+  <!-- Footer Section Begin -->
+    <footer class="footer-sectionpng">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="#"><img src="{% static 'img/footer-logo.png' %}" alt=""></a>
+                        </div>
+                        <ul>
+                            <li>Address: 60-49 Road KN34 </li>
+                            <li>Phone: +250786888</li>
+                            <li>Email: info@delsa.com</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 offset-lg-1">
+                    <div class="footer-widget">
+                        <h5>Information</h5>
+                        <ul>
+                            <li><a href="#">About Us</a></li>
+                            <li><a href="#">Contact</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Join Our Newsletter Now</h5>
+                        <p>Get E-mail updates about our latest shop and special offers.</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Enter Your Mail">
+                            <button type="button">Subscribe</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text offset-3">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | CAETS Ltd
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                        <div class="payment-pic">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+
+    <!-- Js Plugins -->
+    <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/jquery.nice-select.min.js' %}"></script>
+    <script src="{% static 'js/jquery.zoom.min.js' %}"></script>
+    <script src="{% static 'js/jquery.dd.min.js' %}"></script>
+    <script src="{% static 'js/jquery.slicknav.js' %}"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+
+    <script src="{% static 'js/custom_script.js' %}"></script>
+
+</body>
+
+</html>

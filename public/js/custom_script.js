@@ -341,5 +341,13 @@ $(".datasorting").change(function () {      // When sort option is selected get 
 
 
 
+  $('.aboutmodal').on('click', function(e){
+      e.preventDefault();
+              $('#Aboutmodal').modal('show'); // detailsmodal show
+
+    });
+
+
+
 
 

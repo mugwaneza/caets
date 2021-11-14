@@ -39,10 +39,8 @@ class members_personalinfo(models.Model):
     def __str__(self):
      return self.address
 
-class profiles(Document):
-      # user = fields.ReferenceField(members_personalinfo, reverse_delete_rule=CASCADE)
-      user = models.ForeignKey(members_personalinfo,on_delete=models.CASCADE)
-      user_id2 = IntField()
+class profiles(Document):      #MongoDb Model class
+      user_id = IntField()
       image =FileField()
       comment = StringField(default='profile picture', max_length=255)
       created_at = DateTimeField(default=datetime.datetime.utcnow)
@@ -54,10 +52,10 @@ class guest_application(models.Model):
     village = models.CharField(max_length=255)
     sector = models.CharField(max_length=255, )
     district = models.CharField(max_length=255)
-    tel_no = models.CharField(max_length=255,unique=True)
-    nid = models.CharField(max_length=255,unique=True)
+    tel_no = models.CharField(max_length=255)
+    nid = models.CharField(max_length=255)
     visit_reason = models.CharField(max_length=255, blank=True)
-    is_active = models.BooleanField(default='1')
+    is_active = models.BooleanField(default='0')
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
      return self.district

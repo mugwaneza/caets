@@ -1,0 +1,19 @@
+Collecting django-auth-ldap
+  Using cached django_auth_ldap-3.0.0-py3-none-any.whl (20 kB)
+Collecting python-ldap>=3.1
+  Using cached python-ldap-3.3.1.tar.gz (379 kB)
+Requirement already satisfied: Django>=2.2 in c:\pythonproject\caets_environment\lib\site-packages (from django-auth-ldap) (3.2.7)
+Requirement already satisfied: asgiref<4,>=3.3.2 in c:\pythonproject\caets_environment\lib\site-packages (from Django>=2.2->django-auth-ldap) (3.4.1)
+Requirement already satisfied: sqlparse>=0.2.2 in c:\pythonproject\caets_environment\lib\site-packages (from Django>=2.2->django-auth-ldap) (0.4.1)
+Requirement already satisfied: pytz in c:\pythonproject\caets_environment\lib\site-packages (from Django>=2.2->django-auth-ldap) (2021.1)
+Requirement already satisfied: typing-extensions in c:\pythonproject\caets_environment\lib\site-packages (from asgiref<4,>=3.3.2->Django>=2.2->django-auth-ldap) (3.10.0.2)
+Requirement already satisfied: pyasn1>=0.3.7 in c:\pythonproject\caets_environment\lib\site-packages (from python-ldap>=3.1->django-auth-ldap) (0.4.8)
+Requirement already satisfied: pyasn1_modules>=0.1.5 in c:\pythonproject\caets_environment\lib\site-packages (from python-ldap>=3.1->django-auth-ldap) (0.2.8)
+Building wheels for collected packages: python-ldap
+  Building wheel for python-ldap (setup.py): started
+  Building wheel for python-ldap (setup.py): finished with status 'error'
+  Running setup.py clean for python-ldap
+Failed to build python-ldap
+Installing collected packages: python-ldap, django-auth-ldap
+    Running setup.py install for python-ldap: started
+    Running setup.py install for python-ldap: finished with status 'error'

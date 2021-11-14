@@ -116,31 +116,27 @@
                                                          </tbody>
 
                                                        </table>
-                                                           {% else %}
-                                                         <p> No information available</p>
-                                                 {% endif %}
 
-                                                    <!--
-                                                    code to display blog posts ...
-                                                    -->
-                                             {% comment %}       <div class="pagination">
+
+
+                                                    <div class="pagination">
                                                     <span class="step-links">
-                                                        {% if allusers.has_previous %}
-                                                            <b><a href="?page={{ allusers.previous_page_number }}">previous</a></b>
+                                                        {% if allguests.has_previous %}
+                                                            <b><a href="?page={{ allguests.previous_page_number }}">previous</a></b>
                                                         {% endif %}
 
                                                         &nbsp;&nbsp;&nbsp; <span class="current">
-                                                          <b>Page {{ allusers.number }}</b>
+                                                          <b>Page {{ allguests.number }}</b>
                                                           </span>&nbsp;&nbsp;&nbsp;
 
-                                                        {% if allusers.has_next %}
-                                                            <b><a href="?page={{ allusers.next_page_number }}">next</a></b>
+                                                        {% if allguests.has_next %}
+                                                            <b><a href="?page={{ allguests.next_page_number }}">next</a></b>
                                                         {% endif %}
                                                     </span>
                                                     </div>
                                                  {% else %}
                                                          <p> No information available</p>
-                                                 {% endif %}{% endcomment %}
+                                                 {% endif %}
 
                                                     </div>
                                                 </div>

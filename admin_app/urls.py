@@ -1,5 +1,6 @@
 from django.urls import path
-from admin_app.views import AddUser, AddMember, AddGuest, AddDepartment, ViewAttendance, ViewFinanceInfo, Login, AddRole
+from admin_app.views import AddUser, AddMember, AddGuest, AddDepartment, ViewAttendance, ViewFinanceInfo, Login, AddRole, \
+    Logout
 
 
 urlpatterns =[
@@ -12,5 +13,6 @@ path('view/department', AddDepartment,name='department'),
 path('view/attendance', ViewAttendance,name='attendance'),
 path('finance/info', ViewFinanceInfo,name='finance'),
 path('admin/login', Login, name='login'),
+path('logout', Logout, name='logout'),
 
 ]

@@ -46,8 +46,8 @@
                                                                 <div class="form-group ">
                                                                     <select name="role" type="text" class="form-control">
                                                                        <option value=""> -- Select member -- </option>
-                                                                           {% for admin in alladmins.data %}
-                                                                   <option value="{{ admin.id }}"> {{ admin.fname }} {{ admin.lname }} - {{ admin.role.rolename }}</option>
+                                                                           {% for admin in all_roles.data %}
+                                                                   <option value="{{ admin.id }}"> {{ admin.role.rolename }} - {{ admin.fname }} {{ admin.lname }} </option>
                                                                        {% endfor %}
                                                                  </select>
                                                                      </select>
@@ -71,69 +71,54 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-
+                                                       {% if allregistered_admins  %}
                                                        <table class="table table-striped">
                                                            <thead>
                                                            <th>No</th>
                                                            <th>First name</th>
                                                            <th>Last name</th>
-                                                           <th>Email</th>
                                                            <th>Role</th>
                                                            <th>User name</th>
-                                                           <th>Edit</th>
-                                                           <th>Delete</th>
-                                                           <th>Status</th>
+                                                           <th>Created at</th>
                                                            </thead>
                                                           <tbody>
 
-{#                                                           <tr> <td> {{ forloop.counter0|add:allusers.start_index }}</td>#}
-                                                           <tr> <td>1</td>
-                                                               <td>Alexis</td>
-                                                               <td>Kabera</td>
-                                                                <td>mugwales@gmail.com</td>
-                                                               <td>admin</td>
-                                                               <td>bloger</td>
-                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
+                                                    {% for admin in allregistered_admins %}
+                                                         <tr>
+                                                             <td> {{ forloop.counter0|add:allregistered_admins.start_index }}</td>
+                                                               <td>{{ admin.user.fname }}</td>
+                                                               <td>{{ admin.user.lname }}</td>
+                                                               <td>{{admin.user.role.rolename }}</td>
+                                                               <td>{{admin.username}}</td>
+                                                               <td>{{admin.date_joined}}</td>
+
                                                             </tr>
-                                                             <tr> <td>2</td>
-                                                               <td>Jimmy</td>
-                                                               <td>Semana</td>
-                                                                <td>semuy@gmail.com</td>
-                                                               <td>gatekeeper</td>
-                                                               <td>semanajimmy</td>
-                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
-                                                            </tr>
+
+                                                          {% endfor %}
 
 
                                                             </tbody>
 
                                                        </table>
 
-                                                    <!--
-                                                    code to display blog posts ...
-                                                    -->
-                                             {% comment %}       <div class="pagination">
+                                                    <div class="pagination">
                                                     <span class="step-links">
-                                                        {% if allusers.has_previous %}
-                                                            <b><a href="?page={{ allusers.previous_page_number }}">previous</a></b>
+                                                        {% if allregistered_admins.has_previous %}
+                                                            <b><a href="?page={{ allregistered_admins.previous_page_number }}">previous</a></b>
                                                         {% endif %}
 
                                                         &nbsp;&nbsp;&nbsp; <span class="current">
-                                                          <b>Page {{ allusers.number }}</b>
+                                                          <b>Page {{ allregistered_admins.number }}</b>
                                                           </span>&nbsp;&nbsp;&nbsp;
 
-                                                        {% if allusers.has_next %}
-                                                            <b><a href="?page={{ allusers.next_page_number }}">next</a></b>
+                                                        {% if allregistered_admins.has_next %}
+                                                            <b><a href="?page={{ allregistered_admins.next_page_number }}">next</a></b>
                                                         {% endif %}
                                                     </span>
                                                     </div>
                                                  {% else %}
                                                          <p> No information available</p>
-                                                 {% endif %}{% endcomment %}
+                                                 {% endif %}
 
                                                     </div>
                                                 </div>

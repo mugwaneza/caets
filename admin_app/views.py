@@ -1,103 +1,98 @@
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.hashers import make_password, check_password
 from django.db.models import Q
 from django.http import request, HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info, profiles
+from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info, profiles, users
 from .Serializers import MembersSerializer
 
 
 # Create your views here.
 def Login (request):      #Admin Login
 
- # if request.session.get('admin_session'):
- #     return redirect("admin")
- # else:
-    # logout(request)  # clear sessions that may be existing previously
+ if request.session.get('admin_session'):
+     return redirect("admin")
+ else:
+    logout(request)  # clear sessions that may be existing previously
 
-    # if request.method == 'POST':
-      # username = request.POST.get('username')
-      # Iputpassword = request.POST.get('password')
-      #
-      #
-      # if users.objects.filter(username=username).exists():   #when username is valid
-      #
-      #      user = users.objects.get(username=username)
-      #      hashedpass = user.password
-      #      userId = user.id
-      #      firstname = user.first_name
-      #
-      #      if check_password(Iputpassword, hashedpass) :      #when username is valid and pasword is correct
-      #          request.session['user_session'] = userId
-      #          request.session['user'] = firstname
-      #          return redirect("user")
-      #      else:
-      #           messages.error(request, 'Sorry invalid username or password  !')
-      #           return render(request, 'admin_dashboard/login.html')
-      #
-      # else:
-      #    messages.error(request, 'Sorry unknown username !')
-      #    return render(request, 'admin_dashboard/login.html')
+    if request.method == 'POST':
+      username = request.POST.get('username')
+      Iputpassword = request.POST.get('password')
 
-    # else:
+
+      if users.objects.filter(username=username).exists():   #when username is valid
+
+           user = users.objects.get(username=username)
+           hashedpass = user.password
+           userId = user.id
+           firstname = user.user.fname
+
+           if check_password(Iputpassword, hashedpass) :      #when username is valid and pasword is correct
+               request.session['admin_session'] = userId
+               request.session['user'] = firstname
+               return redirect("admin")
+           else:
+                messages.error(request, 'Sorry invalid username or password  !')
+                return render(request, 'admin_dashboard/login.html')
+
+      else:
+         messages.error(request, 'Sorry unknown username !')
+         return render(request, 'admin_dashboard/login.html')
+
+    else:
      return render(request, 'admin_dashboard/login.html')
 
-# def Logout(request):
-#     logout(request)
-#     return render(request, 'admin_dashboard/login.html')
+def Logout(request):
+    logout(request)
+    return render(request, 'admin_dashboard/login.html')
 
 
 def AddUser(request ):
 
- # if not request.session.get('user_session'):
- #    return render(request, 'admin_dashboard/login.html')
- #
- # else:
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
     # if request is not post, initialize an empty form
     if request.method == 'POST':
 
         dataDict = dict()
+        if users.objects.filter(username=request.POST.get('username')).exists():   #check if  username already exist
+             messages.error(request, 'Username was already taken')
+             return HttpResponseRedirect('/welcome/user', dataDict)
+        else:
+            # get form inputs and save it
+            data = users()
+            data.username = request.POST.get('firstname')
+            data.username = request.POST.get('username')
+            Plain_password = request.POST.get('password')
+            data.password = make_password(Plain_password)
+            data.user_id = request.POST.get('role')
+            data.save()
 
-        # if users.objects.filter(email=request.POST.get('email')).exists():   #check if  email already exist
-        #      messages.error(request, 'Email was already used')
-        #      return HttpResponseRedirect('/add/user', dataDict)
-        #
-        # if users.objects.filter(username=request.POST.get('username')).exists():   #check if  username already exist
-        #     messages.error(request, 'User name was already used')
-        #     return HttpResponseRedirect('/add/user', dataDict)
-        # else:
-        #     # get form inputs and save it
-        #     data = users()
-        #     data.first_name = request.POST.get('firstname')
-        #     data.last_name = request.POST.get('lastname')
-        #     data.email = request.POST.get('email')
-        #     data.username = request.POST.get('username')
-        #     Plain_password = request.POST.get('password')
-        #     data.password = make_password(Plain_password)
-        #     data.save()
-        #
-        #     messages.success(request, 'Account was created successfully')
-        #     return HttpResponseRedirect('/add/user',dataDict)
+            messages.success(request, 'Account was created successfully')
+            return HttpResponseRedirect('/welcome/user',dataDict)
     else:
 
-        # data = users.objects.filter().all()
-        # paginator = Paginator(data, 10)
-        # page_number = request.GET.get('page')
-        # allusers = paginator.get_page(page_number)
-
-        alladmins = MembersSerializer(members_personalinfo.objects.filter(~Q(role__rolename='Student')) , many=True)
+        data = users.objects.filter().all()
+        paginator = Paginator(data, 10)
+        page_number = request.GET.get('page')
+        allregistered_admins = paginator.get_page(page_number)
+        all_roles = MembersSerializer(members_personalinfo.objects.filter(~Q(role__rolename='Student')) , many=True)
 
         # while it is get method
-        return render(request, 'admin_dashboard/users.html', {'alladmins' : alladmins})
+        return render(request, 'admin_dashboard/users.html', {'all_roles' : all_roles, 'allregistered_admins' : allregistered_admins})
 
 
 
 def AddMember(request ):
 
- # if not request.session.get('user_session'):
- #    return render(request, 'admin_dashboard/login.html')
- #
- # else:
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
     # if request is not post, initialize an empty form
     if request.method == 'POST':
 
@@ -121,11 +116,10 @@ def AddMember(request ):
             data.email = request.POST.get('email')
             data.address = request.POST.get('address')
             data.save()
-
+            #Save to mongo db user_id which is last inserted id in postgresql profile picture , comment etc
             obj = members_personalinfo.objects.latest('id')
             doc = profiles()
-            doc.user_id2= obj.pk;
-
+            doc.user_id= obj.pk;
             doc.image= request.FILES['profile']
             doc.save()
 
@@ -148,11 +142,11 @@ def AddMember(request ):
 
 def AddGuest(request ):
 
- # if not request.session.get('user_session'):
- #    return render(request, 'admin_dashboard/login.html')
- #
- # else:
-    # if request is not post, initialize an empty form
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
+
     if request.method == 'POST':
 
             dataDict = dict()
@@ -181,15 +175,13 @@ def AddGuest(request ):
 
 def AddDepartment(request ):
 
- # if not request.session.get('user_session'):
- #    return render(request, 'admin_dashboard/login.html')
- #
- # else:
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+ else:
     # if request is not post, initialize an empty form
     if request.method == 'POST':
 
         dataDict = dict()
-
         if department.objects.filter(depname=request.POST.get('department')).exists():   #check if  department already exist
              messages.error(request, 'Department was already registered')
              return redirect('department')
@@ -213,10 +205,10 @@ def AddDepartment(request ):
 
 def AddRole(request ):
 
- # if not request.session.get('user_session'):
- #    return render(request, 'admin_dashboard/login.html')
- #
- # else:
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
     # if request is not post, initialize an empty form
     if request.method == 'POST':
 
@@ -240,16 +232,15 @@ def AddRole(request ):
         paginator = Paginator(data, 10)
         page_number = request.GET.get('page')
         allroles = paginator.get_page(page_number)
-
         return render(request, 'admin_dashboard/roles.html', {'allroles' : allroles} )
 
 
 def ViewAttendance(request ):
 
- # if not request.session.get('user_session'):
- #    return render(request, 'admin_dashboard/login.html')
- #
- # else:
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
     # if request is not post, initialize an empty form
     if request.method == 'POST':
 

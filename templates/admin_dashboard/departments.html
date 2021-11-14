@@ -74,7 +74,7 @@
                                                           <tbody>
                                                             {% for departments in alldepartments %}
                                                            <tr>
-                                                               <td> {{ forloop.counter0|add:alldepartments.start_index }}</td>
+                                                               <td> {{ forloop.counter|add:alldepartments.start_index }}</td>
                                                                <td>{{ departments.depname }}</td>
                                                                <td>{{ departments.description }}</td>
                                                                <td><button class="btn-sm btn-primary">Edit</button></td>

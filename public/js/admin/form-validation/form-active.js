@@ -21,70 +21,65 @@
 				username:
 				{
 					required: true,
-					minlength:5,
+					minlength:5
 				},
 				password:
 				{
 					required: true,
-					minlength:8,
+					minlength:8
 				},
 
 				photo:
 				{
-					required: true,
+					required: true
 				},
 				address:
 				{
-					required: true,
+					required: true
 				},
 				tel:
 				{required: true,
                  minlength:10,
-                 maxlength:10,
+                 maxlength:10
 				},
 				nid:
-				{required: true,
+				{required: true
 				},
 
 				district:
 					{
-				required: true,
-				},
-
-				district:
-					{
-				required: true,
+				required: true
 				},
 
 				sectorname:
 					{
-				required: true,
+				required: true
 				},
 				phonenumber:
 					{
 				required: true,
 				 minlength:10,
-                 maxlength:10,
+                 maxlength:10
 				},
 				department:
 					{
-				required: true,
+				required: true
 				},
 				fullname:
 					{
-				required: true,
+				required: true
 				},
 				village:
 					{
-				required: true,
+				required: true
 				},
 				sector:
 					{
-				required: true,
+				required: true
 				},
 				visit_reason:
 					{
-				required: true,
+				required: true
 				},
                  rolename:
 				{
@@ -99,6 +94,10 @@
                   required: true
 				},
                  balance:
+				{
+                  required: true
+				},
+                 role:
 				{
                   required: true
 				}
@@ -124,56 +123,56 @@
 				},
 				email:
 				{
-					required: 'Please enter your email address',
+					required: 'Please enter your email address'
 				},
 				photo:
 				{
-					required: 'Photo is required',
+					required: 'Photo is required'
 				},
 				address:
 				{
-					required: 'Please enter address',
+					required: 'Please enter address'
 				},
 				tel:
 				{
-					required: 'Telephone is required',
+					required: 'Telephone is required'
 				}
                 ,districtname:
 				{
-					required: 'District can be empty',
+					required: 'District can be empty'
 				},
 				phonenumber:
 				{
-					required: 'please enter telephone',
+					required: 'please enter telephone'
 				},
             department:
 				{
-					required: 'Select department',
+					required: 'Select department'
 				},
             fullname:
 				{
-					required: 'Full name is required',
+					required: 'Full name is required'
 				}
                   ,
             village:
 				{
-					required: 'Village is  required',
+					required: 'Village is  required'
 				} ,
             sector:
 				{
-					required: 'sector is  required',
+					required: 'sector is  required'
 				},
             district:
 				{
-					required: 'district is  required',
+					required: 'district is  required'
 				},
              nid:
 				{
-					required: 'Nation Id is  required',
+					required: 'Nation Id is  required'
 				},
              visit_reason:
 				{
-					required: 'Visit reason is  required',
+					required: 'Visit reason is  required'
 				},
 				rolename:
 				{
@@ -190,6 +189,11 @@
                 balance:
 				{
 					required: 'Balance is required'
+				}
+                  ,
+                role:
+				{
+					required: 'Role is required'
 				}
 
 			},					
