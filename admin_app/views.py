@@ -2,9 +2,10 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.hashers import make_password, check_password
 from django.db.models import Q
-from django.http import request, HttpResponseRedirect, JsonResponse
+from django.http import request, HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from rest_framework.utils import json
 from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info, profiles, users
 from .Serializers import MembersSerializer
 
@@ -47,6 +48,12 @@ def Login (request):      #Admin Login
 def Logout(request):
     logout(request)
     return render(request, 'admin_dashboard/login.html')
+
+def FindMemberById(request, mid):
+
+    member = MembersSerializer(members_personalinfo.objects.filter(Q(id=mid)) , many=True)
+
+    return JsonResponse(member.data,  safe=False)
 
 
 def AddUser(request ):
@@ -126,6 +133,48 @@ def AddMember(request ):
 
             messages.success(request, 'A member is successfully')
             return HttpResponseRedirect('member',dataDict)
+    else:
+
+        alldepts = department.objects.filter().all()
+        allroles = roles.objects.filter().all()
+
+        data = members_personalinfo.objects.filter().all()
+        paginator = Paginator(data, 10)
+        page_number = request.GET.get('page')
+        allmembers = paginator.get_page(page_number)
+        # while it is get method
+        return render(request, 'admin_dashboard/members.html', {'allmembers' : allmembers, 'alldepts':alldepts, 'allroles':allroles})
+
+
+def UpdateMemberById(request ):
+
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
+    # if request is not post, initialize an empty form
+    if request.method == 'POST':
+
+        dataDict = dict()
+
+
+        mid = request.POST.get('mid')
+
+        # get form inputs and save it
+        data = members_personalinfo.objects.get(id=mid);
+        data.role_id = request.POST.get('rolename')
+        data.dept_id = request.POST.get('department')
+        data.fname = request.POST.get('firstname')
+        data.lname = request.POST.get('lastname')
+        data.tel_no = request.POST.get('tel')
+        data.email = request.POST.get('email')
+        data.address = request.POST.get('address')
+        data.save()
+
+
+
+        messages.success(request, 'A member successfully updated')
+        return HttpResponseRedirect('member',dataDict)
     else:
 
         alldepts = department.objects.filter().all()

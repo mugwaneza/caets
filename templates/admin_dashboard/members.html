@@ -81,7 +81,7 @@
                                                                     <input name="address" id="address" type="text" class="form-control" placeholder="Address ex: District,Sector,Cell,Village">
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <input name="submit" id="" type="submit" class="btn-lg btn btn-danger col-lg-12" value="Submit">
+                                                                    <input name="submit" id="" type="submit" class="btn-lg btn btn-primary col-lg-8 col-md-offset-2" value="Submit">
                                                                 </div>
                                                             </div>
                                                             </div>
@@ -118,15 +118,16 @@
                                                      {% for member in allmembers %}
                                                      <tr>
                                                        <td> {{ forloop.counter0|add:allmembers.start_index }}</td>
+                                                       <td class="id hidden">{{ member.id }}</td>
                                                        <td>{{ member.fname }}</td>
                                                        <td>{{ member.lname }}</td>
                                                        <td>{{ member.email }}</td>
                                                        <td>{{ member.tel_no }}</td>
                                                        <td>{{ member.address }}</td>
                                                        <td>{{ member.dept.depname }}</td>
-                                                       <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                       <td><button class="btn-sm btn-danger">Delete</button></td>
-                                                       <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
+                                                       <td><button class="btn-sm btn-info update"><span class=" fa fa-pencil-square-o " title="update"></span></button></td>
+                                                       <td><button class="btn-sm btn-warning trash"><span class=" fa fa-trash-o " title="trash"></span></button></td>
+                                                       <td><button class="btn-sm btn-success print"><span class=" fa  fa-address-card-o" title="print"></span></button></td>
                                                      </tr>
                                                         {% endfor %}
 
@@ -165,6 +166,112 @@
                                 </div>
 
                             </div>
+
+
+             <!-- update member Modal -->
+
+       <section class="latest-blog spad">
+        <div class="container">
+       <div class="modal fade " id="updatemodal" tabindex="-1" role="dialog" aria-labelledby="updatemodal" aria-hidden="true">
+          <div class="modal-dialog  modal-lg " role="document">
+            <div class="modal-content  ">
+              <div class="modal-header">
+                <h5 class="modal-title offset-2 text-info" id="exampleModalLabel">Update members</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+                 <div class="modal-body ">
+
+
+                                 <div class="row">
+                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div id="dropzone1" class="pro-ad">
+
+                    <form action="{% url 'updatememb' %}" class=" needsclick add-professors mt-4" autocomplete="off" method="post"  >
+
+                           {% csrf_token %}
+
+                         <input name="mid" type="text" value="" class="mod_mid hidden">
+
+                        <div class="row">
+                            <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 col-md-offset-1">
+
+                        {% for message in messages %}
+                            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message | safe }}
+                               </div>
+                        {% endfor %}
+
+                                <div class="form-group col-md-6">
+                                    <select name="department" type="text" class="form-control mod_department">
+                                       <option value="">-- Select department --</option>
+                                         {% for departmernt in alldepts %}
+                                       <option value="{{ departmernt.id }}">{{ departmernt.depname }}</option>
+                                           {% endfor %}
+
+                                     </select>
+                                 </div>
+
+                                <div class="form-group col-md-6">
+                                    <select name="rolename" type="text" class="form-control mod_rolename">
+                                       <option value="">-- Select Role name --</option>
+                                         {% for role in allroles %}
+                                       <option value="{{ role.id }}">{{ role.rolename }}</option>
+                                           {% endfor %}
+
+                                     </select>
+                                 </div>
+
+                                <div class="form-group col-md-6">
+                                    <input name="firstname" type="text" class="form-control mod_fname" placeholder="First Name ">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <input name="lastname" type="text" class="form-control mod_lname" placeholder="Last name">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <input name="email" type="email" class="form-control mod_email" placeholder="Email">
+                                </div>
+
+                                <div class="form-group col-md-6">
+                                    <input name="tel" type="number" class="form-control mod_tel" placeholder="Telephone">
+                                </div>
+
+                                <div class="form-group">
+                                    <input name="address" id="address" type="text" class="form-control mod_address" placeholder="Address ex: District,Sector,Cell,Village">
+                                </div>
+                                <div class="form-group">
+                                    <input name="submit" id="" type="submit" class="btn-lg btn btn-primary col-lg-8 col-md-offset-2" value="Submit">
+                                </div>
+                            </div>
+                            </div>
+
+                    </form>
+                        </div>
+                        </div>
+                        </div>
+                        </div>
+                      </div>
+                      <div class="modal-footer">
+                        <button type="button" class="btn  btn-info" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                   </div>
+                </div>
+                </div>
+                </section>
+                <!-- End update member Modal -->
+
+
+
+
+
                         </div>
                     </div>
                 </div>

@@ -63,3 +63,46 @@
         });
     }
     });
+
+
+             // #Modal image  when image is clicked
+       $(".update").click(function() {
+
+       var $mid  =    $(this).closest('tr').find('.id').text();
+        $.ajax({
+                type: "GET",
+                url: "/find/member/"+$mid,
+                async: false,
+                dataType: 'json',
+                success: function (data) {
+
+              if (data !="") {
+                 data.forEach(function (member_data) {
+
+                    var fname =      member_data.fname
+                    var lname =      member_data.lname
+                    var tel_no =     member_data.tel_no
+                    var email =      member_data.email
+                    var address =    member_data.address
+
+//                     member_data.tel_no
+//                     member_data.tel_no
+
+
+
+            $(".mod_mid").val($mid);
+            $(".mod_fname").val(fname);
+            $(".mod_lname").val(lname);
+            $(".mod_tel").val(tel_no);
+            $(".mod_email").val(email);
+            $(".mod_address").val(address);
+
+//             $(".mod_department").val(fname);
+//            $(".mod_rolename").val(lname);
+
+                         });
+                       }
+                   }
+                });
+        $('#updatemodal').modal('show'); // show update modal
+    });

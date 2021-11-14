@@ -1,6 +1,6 @@
 from django.urls import path
 from admin_app.views import AddUser, AddMember, AddGuest, AddDepartment, ViewAttendance, ViewFinanceInfo, Login, AddRole, \
-    Logout
+    Logout, FindMemberById, UpdateMemberById
 
 
 urlpatterns =[
@@ -14,5 +14,7 @@ path('view/attendance', ViewAttendance,name='attendance'),
 path('finance/info', ViewFinanceInfo,name='finance'),
 path('admin/login', Login, name='login'),
 path('logout', Logout, name='logout'),
+path('find/member/<int:mid>', FindMemberById, name='findmb'),
+path('update/member', UpdateMemberById, name='updatememb'),
 
 ]
