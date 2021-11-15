@@ -4720,10 +4720,20 @@ div#sparklinehome canvas {
 	text-decoration:none;
 }
 
+.container {
+  position: relative;
+  text-align: center;
+}
 
 .identification {
   position: absolute;
   top: 118px;
   left: 300px;
-}.img_textdiv
+}
 
+.qrcodeholder {
+
+  position: absolute;
+  top: 98px;
+  left: 170px;
+}

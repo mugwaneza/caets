@@ -151,19 +151,14 @@
        $("#telid").text($tel )
 
 
-//        $.ajax({
-//                type: "get",
-////                url: "/print/card/"+$mid,
-//                async: false,
-//                dataType: 'json',
-////                data: {csrfmiddlewaretoken: window.CSRF_TOKEN},
-//                success: function (success) {
-//
-//                },
-//               error:function (err) {
-//
-//                }
-//             });
+       $('#qrcodeholder').qrcode({
+		text	:$mid ,
+		render	: "canvas",  // 'canvas' or 'table'. Default value is 'canvas'
+		background : "#ffffff",
+		foreground : "#000000",
+		width : 115,
+		height: 115
+	    });
 
           $('#idcardmodal').modal('show'); // show print modal
 
