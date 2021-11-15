@@ -55,7 +55,7 @@ class guest_application(models.Model):
     tel_no = models.CharField(max_length=255)
     nid = models.CharField(max_length=255)
     visit_reason = models.CharField(max_length=255, blank=True)
-    is_active = models.BooleanField(default='0')
+    status = models.CharField(max_length=255, default='0')
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):
      return self.district
@@ -72,10 +72,10 @@ class finance_info(models.Model):
 
 
 class attendance(models.Model):
-    member = models.ForeignKey(members_personalinfo, on_delete=models.CASCADE, blank=True)
-    guest = models.ForeignKey(guest_application, on_delete=models.CASCADE, blank=True)
-    checkin_time = models.DateTimeField()
-    checkout_time = models.DateTimeField()
+    member = models.ForeignKey(members_personalinfo, on_delete=models.CASCADE,  blank=True,  null=True)
+    guest = models.ForeignKey(guest_application, on_delete=models.CASCADE, blank=True, null=True)
+    checkin_time =  models.CharField(max_length=255)
+    checkout_time =  models.CharField(max_length=255)
     is_active = models.BooleanField(default='1')
     created_at = models.DateTimeField(auto_now_add=True)
     def __str__(self):

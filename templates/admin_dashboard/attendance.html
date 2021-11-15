@@ -19,41 +19,48 @@
                                             <div class="review-content-section">
                                                 <div id="dropzone1" class="pro-ad">
 
-                                   <table class="table table-striped ">
+                                      {% if all_attendees_checkedin %}
+                                         <table class="table table-striped ">
                                             <thead>
                                             <th>No</th>
                                             <th>Member</th>
                                             <th>Guest</th>
+                                            <th>Department</th>
                                             <th>Check-In time</th>
                                             <th>Check-Out time</th>
                                             <th>Status</th>
                                             </thead>
+                                            {% for checkedins in all_attendees_checkedin.data %}
+                                           <tr>
+                                           <td> {{ forloop.counter}}</td>
 
-                                            <tr>
-{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
-                                            <td>1</td>
-                                            <td> Kabera Alexis</td>
-                                            <td> - </td>
-                                            <td> 20:30-11-09-2021 </td>
-                                            <td> - </td>
+                                              {% if checkedins.member.id == null %}
+                                               <td>-</td>
+                                               {% else %}
+                                              <td>{{ checkedins.member.fname }} {{ checkedins.member.lname }}</td>
+                                               {% endif %}
+
+                                             {% if checkedins.guest.id == null %}
+                                               <td>-</td>
+                                               {% else %}
+                                              <td>{{ checkedins.guest.fullname }}</td>
+                                               <td>{{ checkedins.guest.dept.depname }}</td>
+                                               {% endif %}
+
+                                             {% if checkedins.member.id != null %}
+                                             <td>{{ checkedins.member.dept.depname }}</td>
+                                              {% endif %}
+
+                                             <td>{{ checkedins.checkin_time }}</td>
+                                             <td>Not yet</td>
                                             <td> <btn class="btn btn-warning"> checked-in </btn> </td>
                                             </tr>
-
-                                            <tr>
-{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
-                                            <td>2</td>
-                                            <td> - </td>
-                                            <td> Jimmy Shyaka </td>
-                                            <td> 20:30-11-09-2021 </td>
-                                            <td> - </td>
-                                            <td> <btn class="btn btn-warning"> checked-in </btn> </td>
-                                            </tr>
-
+                                             {% endfor %}
                                         </table>
 
-                               {% comment %}  {% else %}
+                                        {% else %}
                                    <p>No available info</p>
-                                   {% endif %}{% endcomment %}
+                                   {% endif %}
 
                                                 </div>
                                             </div>
@@ -67,37 +74,50 @@
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
-                                    <table class="table table-striped ">
+
+                                         {% if all_attendees_checkedout %}
+                                         <table class="table table-striped ">
                                             <thead>
                                             <th>No</th>
                                             <th>Member</th>
                                             <th>Guest</th>
+                                            <th>Department</th>
                                             <th>Check-In time</th>
                                             <th>Check-Out time</th>
                                             <th>Status</th>
                                             </thead>
+                                            {% for checkedout in all_attendees_checkedout.data %}
+                                           <tr>
+                                           <td>{{ forloop.counter}}</td>
 
-                                            <tr>
-{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
-                                            <td>1</td>
-                                            <td> Kabera Alexis</td>
-                                            <td> - </td>
-                                            <td> 20:30-11-09-2021 </td>
-                                            <td> 15:30-11-09-2021 </td>
-                                            <td> <btn class="btn btn-danger"> checked-out </btn></td>
+                                              {% if checkedout.member.id == null %}
+                                               <td>-</td>
+                                               {% else %}
+                                              <td>{{ checkedout.member.fname }} {{ checkedout.member.lname }}</td>
+                                               {% endif %}
+
+                                             {% if checkedout.guest.id == null %}
+                                               <td>-</td>
+                                               {% else %}
+                                              <td>{{ checkedout.guest.fullname }}</td>
+                                               <td>{{ checkedout.guest.dept.depname }}</td>
+                                               {% endif %}
+
+                                             {% if checkedout.member.id != null %}
+                                             <td>{{ checkedout.member.dept.depname }}</td>
+                                              {% endif %}
+
+                                             <td>{{ checkedout.checkin_time }}</td>
+                                             <td>{{ checkedout.checkout_time }}</td>
+                                            <td> <btn class="btn btn-success"> checked-out </btn> </td>
                                             </tr>
+                                             {% endfor %}
+                                        </table>
 
-                                            <tr>
-{#                                            <td>{{forloop.parentloop.parentloop.counter}}</td>#}
-                                            <td>2</td>
-                                            <td> - </td>
-                                            <td> Jimmy Shyaka </td>
-                                            <td> 20:30-11-09-2021 </td>
-                                            <td> 17:30-11-09-2021 </td>
-                                            <td><btn class="btn btn-danger"> checked-out </btn></td>
-                                            </tr>
+                                        {% else %}
+                                      <p class="col-md-offset-5">No available info</p>
+                                   {% endif %}
 
-                                          </table>
                                                     </div>
                                                 </div>
                                             </div>

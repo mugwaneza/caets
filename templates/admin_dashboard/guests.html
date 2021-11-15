@@ -97,20 +97,24 @@
                                                            <th>Address</th>
                                                            <th>Target department</th>
                                                            <th>Edit</th>
-                                                           <th>Delete</th>
-                                                           <th>Status</th>
+                                                           <th>Action</th>
                                                            </thead>
                                                           <tbody>
                                                        {% for guets in allguests %}
                                                            <tr>
                                                                <td> {{ forloop.counter0|add:allguests.start_index }}</td>
+                                                               <td class="id">{{ guets.id }}</td>
                                                                <td>{{ guets.fullname }}</td>
                                                                <td>{{ guets.tel_no }}</td>
                                                                <td>{{ guets.village }},{{ guets.sector }}, {{ guets.district }}</td>
                                                                <td>{{ guets.dept.depname }}</td>
-                                                               <td><button class="btn-sm btn-success">Approve</button></td>
-                                                               <td><button class="btn-sm btn-warning">Reject</button></td>
-                                                               <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
+                                                               {% if guets.status == '1' %}
+                                                               <td><button class="btn-sm btn-outline-danger text-success disabled " >Approved</button></td>
+                                                               {% elif guets.status == '-1' %}
+                                                                 <td><button class="btn-sm btn-warning disabled text-danger">Rejected</button></td>
+                                                               {% else %}
+                                                               <td><button class="btn-sm btn-success approvebtn " >Approve</button> <button class="btn-sm btn-warning rejectbtn">Reject</button></td>
+                                                               {% endif %}
                                                             </tr>
                                                         {% endfor %}
                                                          </tbody>

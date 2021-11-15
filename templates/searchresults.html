@@ -23,7 +23,7 @@
                      </form>
 
                 </div>
-                <div class="card mt-5  col-md-8 offset-2">
+                <div class="card mt-5  col-md-9 offset-1">
 
 
                  <h4 class="mt-5 mb-5 text-primary">Your search results</h4>
@@ -34,11 +34,12 @@
                                                        <table class="table table-striped">
                                                            <thead>
                                                            <th>No</th>
-                                                           <th>First name</th>
+                                                           <th>Name</th>
                                                            <th>Telephone</th>
                                                            <th>Address</th>
-                                                           <th>Target department</th>
-                                                           <th>Edit</th>
+                                                          <th>Destination</th>
+                                                          <th>Done at</th>
+                                                          <th>Status</th>
                                                            </thead>
                                                           <tbody>
                                                        {% for guets in searchres %}
@@ -48,10 +49,13 @@
                                                                <td>{{ guets.tel_no }}</td>
                                                                <td>{{ guets.village }},{{ guets.sector }}, {{ guets.district }}</td>
                                                                <td>{{ guets.dept.depname }}</td>
-                                                               {% if not guets.is_active%}
-                                                               <td><button class="btn-sm btn-success text-white">Approved</button></td>
+                                                               <td>{{ guets.created_at }}</td>
+                                                               {% if guets.status == '1'%}
+                                                               <td><button class="btn-sm btn-outline-success disabled text-success" >Approved</button></td>
+                                                             {% elif  guets.status == '-1'%}
+                                                            <td><button class="btn-sm btn-outline-danger disabled text-danger "  >Rejected</button></td>
                                                              {% else %}
-                                                             <td><button class="btn-sm btn-warning text-white">Pending</button></td>
+                                                             <td><button class="btn-sm  btn-outline-warning disabled text-warning "  >Pending</button></td>
                                                              {% endif %}
 
                                                             </tr>

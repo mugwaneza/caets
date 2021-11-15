@@ -164,3 +164,68 @@
 
              });
 
+
+    $(".approvebtn").click(function() {    // when approve booking is clicked
+
+       var $id  =    $(this).closest('tr').find('.id').text();
+
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+                type: "post",
+                url: "/approve/booking/"+$id,
+                async: false,
+                dataType: 'json',
+                data: {
+                    id : $id,
+                    csrfmiddlewaretoken: window.CSRF_TOKEN
+                },
+                success: function (success) {
+                      console.log(success)
+
+                },
+               error:function (err) {
+               console.log(err)
+              window.location.href = "/approve/booking/"+$id;
+
+
+                }
+             });
+
+             });
+
+
+       $(".rejectbtn").click(function() {    // when approve booking is clicked
+
+       var $id  =    $(this).closest('tr').find('.id').text();
+
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+                type: "post",
+                url: "/reject/booking/"+$id,
+                async: false,
+                dataType: 'json',
+                data: {
+                    id : $id,
+                    csrfmiddlewaretoken: window.CSRF_TOKEN
+                },
+                success: function (success) {
+                      console.log(success)
+
+                },
+               error:function (err) {
+               window.location.href = "/view/guest";
+
+                }
+             });
+
+             });
