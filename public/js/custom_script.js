@@ -1,3 +1,4 @@
+/*
 
   $(".BtnFilter").click(function() {  // When filter button is clicked
         // hide default page contents
@@ -205,7 +206,7 @@ $(".datasorting").change(function () {      // When sort option is selected get 
 
         }
     });
-   
+
 
   //  Load more button on services page
         $( document ).ready(function () {
@@ -343,3 +344,4 @@ $(".datasorting").change(function () {      // When sort option is selected get 
 
 
 
+*/

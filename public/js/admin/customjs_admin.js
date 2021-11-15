@@ -1,5 +1,5 @@
 
-         // show districts registered on clicked province
+/*         // show districts registered on clicked province
     $(".provinc").change(function () {
 
     var $provinceid = $(this).children("option:selected").val();
@@ -62,11 +62,11 @@
                    } ,
         });
     }
-    });
+    });*/
 
 
              // #Modal image  when image is clicked
-       $(".update").click(function() {
+       $(".updatebtn").click(function() {
 
        var $mid  =    $(this).closest('tr').find('.id').text();
         $.ajax({
@@ -106,3 +106,66 @@
                 });
         $('#updatemodal').modal('show'); // show update modal
     });
+
+
+
+   $(".deletebtn").click(function() {
+
+       var $mid  =    $(this).closest('tr').find('.id').text();
+
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $.ajax({
+                type: "post",
+                url: "/trash/member/"+$mid,
+                async: false,
+                dataType: 'json',
+                data: {csrfmiddlewaretoken: window.CSRF_TOKEN},
+                success: function (success) {
+               window.location.href = "/view/member";
+                },
+               error:function (err) {
+//               console.log(err)
+//                   window.location.href = "/trash/member/"+$mid;
+                                  window.location.href = "/view/member";
+
+                }
+             });
+
+             });
+
+   $(".printbtn").click(function() {
+
+       var $mid  =      $(this).closest('tr').find('.id').text();
+       var $fname  =    $(this).closest('tr').find('.fname').text();
+       var $lname  =    $(this).closest('tr').find('.lname').text();
+       var $tel  =      $(this).closest('tr').find('.tel').text();
+       var $dept =      $(this).closest('tr').find('.dept').text();
+
+       $("#namesid").text($fname + " " + $lname )
+       $("#deptid").text($dept )
+       $("#telid").text($tel )
+
+
+//        $.ajax({
+//                type: "get",
+////                url: "/print/card/"+$mid,
+//                async: false,
+//                dataType: 'json',
+////                data: {csrfmiddlewaretoken: window.CSRF_TOKEN},
+//                success: function (success) {
+//
+//                },
+//               error:function (err) {
+//
+//                }
+//             });
+
+          $('#idcardmodal').modal('show'); // show print modal
+
+             });
+

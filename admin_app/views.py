@@ -160,7 +160,10 @@ def UpdateMemberById(request ):
 
         mid = request.POST.get('mid')
 
-        # get form inputs and save it
+        # get form inputs and update it
+
+        # MyTable.objects.filter(pk=some_value).update(field1='some value')
+
         data = members_personalinfo.objects.get(id=mid);
         data.role_id = request.POST.get('rolename')
         data.dept_id = request.POST.get('department')
@@ -174,6 +177,33 @@ def UpdateMemberById(request ):
 
 
         messages.success(request, 'A member successfully updated')
+        return HttpResponseRedirect('member',dataDict)
+    else:
+
+        alldepts = department.objects.filter().all()
+        allroles = roles.objects.filter().all()
+
+        data = members_personalinfo.objects.filter().all()
+        paginator = Paginator(data, 10)
+        page_number = request.GET.get('page')
+        allmembers = paginator.get_page(page_number)
+        # while it is get method
+        return render(request, 'admin_dashboard/members.html', {'allmembers' : allmembers, 'alldepts':alldepts, 'allroles':allroles})
+
+def DeleteMemberById(request, mid ):
+
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
+    # if request is not post, initialize an empty form
+    if request.method == 'POST':
+
+        dataDict = dict()
+
+        # get routes  objects  and delete it
+        members_personalinfo.objects.filter(id=mid).delete();
+        messages.warning(request, 'A member successfully deleted')
         return HttpResponseRedirect('member',dataDict)
     else:
 
@@ -362,3 +392,16 @@ def ViewFinanceInfo(request ):
 
         return render(request, 'admin_dashboard/finance_info.html',{'allfinance': allfinance, 'all_students': all_students} )
         # return JsonResponse( all_students.data, safe=False)
+
+def PrintCardById(request, mid):
+
+    message = members_personalinfo.objects.filter(id=1).delete()
+
+    return  message
+
+
+def Test(request):
+
+    message = members_personalinfo.objects.filter(id=1).delete()
+
+    return  message
