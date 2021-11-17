@@ -67,8 +67,7 @@
                                                            <th>No</th>
                                                            <th>Role name</th>
                                                            <th>Description</th>
-                                                           <th>Edit</th>
-                                                           <th>Delete</th>
+                                                           <th>Created_at</th>
                                                            <th>Status</th>
                                                            </thead>
                                                           <tbody>
@@ -77,8 +76,7 @@
                                                                <td> {{ forloop.counter0|add:allroles.start_index }}</td>
                                                                <td>{{ roles.rolename }}</td>
                                                                <td>{{ roles.description }}</td>
-                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
+                                                               <td>{{ roles.created_at|date:"d-m-Y h:m" }}</td>
                                                                <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
                                                             </tr>
                                                            {% endfor %}

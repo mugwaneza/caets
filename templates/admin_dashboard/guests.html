@@ -96,18 +96,19 @@
                                                            <th>Telephone</th>
                                                            <th>Address</th>
                                                            <th>Target department</th>
-                                                           <th>Edit</th>
+                                                            <th>Done at</th>
                                                            <th>Action</th>
                                                            </thead>
                                                           <tbody>
                                                        {% for guets in allguests %}
                                                            <tr>
                                                                <td> {{ forloop.counter0|add:allguests.start_index }}</td>
-                                                               <td class="id">{{ guets.id }}</td>
+                                                               <td class="id hidden">{{ guets.id }}</td>
                                                                <td>{{ guets.fullname }}</td>
                                                                <td>{{ guets.tel_no }}</td>
                                                                <td>{{ guets.village }},{{ guets.sector }}, {{ guets.district }}</td>
                                                                <td>{{ guets.dept.depname }}</td>
+                                                               <td>{{ guets.created_at|date:"d-m-Y h:m" }}</td>
                                                                {% if guets.status == '1' %}
                                                                <td><button class="btn-sm btn-outline-danger text-success disabled " >Approved</button></td>
                                                                {% elif guets.status == '-1' %}

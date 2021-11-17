@@ -6,7 +6,7 @@ from django.db.models import Q
 from django.http import HttpResponseRedirect, JsonResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from admin_app.Serializers import MembersSerializer, AttendanceSerializer
+from admin_app.Serializers import MembersSerializer, AttendanceSerializer, GuestApplicationSerializer
 
 from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info, profiles, users,attendance
 
@@ -56,6 +56,12 @@ def FindMemberById(request, mid):
     member = MembersSerializer(members_personalinfo.objects.filter(Q(id=mid)) , many=True)
 
     return JsonResponse(member.data,  safe=False)
+
+def FindAllGuestsApplied(request):    #This returns all applications regardless to the status , in json format, where data can be used in react native expo app too
+
+    app = GuestApplicationSerializer(guest_application.objects.filter().all() , many=True)
+
+    return JsonResponse(app.data,  safe=False)
 
 
 def AddUser(request ):
@@ -386,6 +392,13 @@ def ViewAttendance(request ):
 
 
         return render(request, 'admin_dashboard/attendance.html', {'all_attendees_checkedin' : all_attendees_checkedin, 'all_attendees_checkedout' : all_attendees_checkedout})
+
+def ViewReport(request ):
+
+    all_attendees = AttendanceSerializer(attendance.objects.filter().all(), many=True )
+
+    return render(request, 'admin_dashboard/report.html', {'all_attendees' : all_attendees} )
+
 
 def ViewFinanceInfo(request ):
 

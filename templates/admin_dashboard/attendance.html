@@ -53,7 +53,7 @@
 
                                              <td>{{ checkedins.checkin_time }}</td>
                                              <td>Not yet</td>
-                                            <td> <btn class="btn btn-warning"> checked-in </btn> </td>
+                                            <td> <btn class="btn btn-warning disabled"> checked-in </btn> </td>
                                             </tr>
                                              {% endfor %}
                                         </table>
@@ -107,9 +107,10 @@
                                              <td>{{ checkedout.member.dept.depname }}</td>
                                               {% endif %}
 
-                                             <td>{{ checkedout.checkin_time }}</td>
-                                             <td>{{ checkedout.checkout_time }}</td>
-                                            <td> <btn class="btn btn-success"> checked-out </btn> </td>
+                                             <td>{{ checkedout.checkin_time}}</td>
+
+                                             <td>{{ checkedout.checkout_time}}</td>
+                                            <td> <btn class="btn btn-success disabled"> checked-out </btn> </td>
                                             </tr>
                                              {% endfor %}
                                         </table>

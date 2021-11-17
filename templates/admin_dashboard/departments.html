@@ -67,8 +67,7 @@
                                                            <th>No</th>
                                                            <th>Department name</th>
                                                            <th>Description</th>
-                                                           <th>Edit</th>
-                                                           <th>Delete</th>
+                                                           <th>Created at</th>
                                                            <th>Status</th>
                                                            </thead>
                                                           <tbody>
@@ -77,8 +76,7 @@
                                                                <td> {{ forloop.counter|add:alldepartments.start_index }}</td>
                                                                <td>{{ departments.depname }}</td>
                                                                <td>{{ departments.description }}</td>
-                                                               <td><button class="btn-sm btn-primary">Edit</button></td>
-                                                               <td><button class="btn-sm btn-danger">Delete</button></td>
+                                                               <td>{{ departments.created_at|date:"d-m-Y h:m" }}</td>
                                                                <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
                                                             </tr>
                                                            {% endfor %}

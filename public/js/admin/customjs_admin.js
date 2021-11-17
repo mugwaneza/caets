@@ -229,3 +229,9 @@
              });
 
              });
+
+ $('.printbtn').click(function(){   // Print custom area
+        $('.printtitle').css('text-align','center');
+        $('.PrintArea').print()
+
+     });

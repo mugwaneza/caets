@@ -1,0 +1,89 @@
+{% load static %}
+{% include 'admin_dashboard/includes/header.html' %}
+        <!-- Single pro tab review Start-->
+        <div class="single-pro-review-area mt-t-30 mg-b-15">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="product-payment-inner-st">
+                            <ul id="myTabedu1" class="tab-review-design">
+
+                            </ul>
+                            <div id="myTabContent" class="tab-content custom-product-edit">
+
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="row">
+                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+
+
+                                         {% if all_attendees %}
+                                         <div class="PrintArea">
+                          <h5 class="col-md-offset-3 text-success printtitle "><u> Campus Entrance and Exit System's Report </u></h5> <br>
+
+                                         <table class="table table-striped ">
+                                            <thead>
+                                            <th>No</th>
+                                            <th>Member</th>
+                                            <th>Guest</th>
+                                            <th>Address</th>
+                                            <th>Visited</th>
+                                            <th>Check-In time</th>
+                                            <th>Check-Out time</th>
+                                            <th>Status</th>
+                                            </thead>
+                                            {% for report in all_attendees.data %}
+                                           <tr class="bg-warning">
+                                           <td>{{ forloop.counter}}</td>
+
+                                              {% if report.member.id == null %}
+                                               <td>-</td>
+                                               {% else %}
+                                              <td>{{ report.member.fname }} {{ report.member.lname }}</td>
+                                               {% endif %}
+
+                                             {% if report.guest.id == null %}
+                                               <td>-</td>
+                                               {% else %}
+                                              <td>{{ report.guest.fullname }}</td>
+                                               <td>{{ report.guest.district }},{{ report.guest.sector }}</td>
+                                               <td>{{ report.guest.dept.depname }}</td>
+                                               {% endif %}
+
+                                             {% if report.member.id != null %}
+                                             <td>{{ report.member.dept.depname }}</td>
+                                              {% endif %}
+
+                                             <td>{{ report.checkin_time}}</td>
+
+                                              {% if report.checkout_time != "" %}
+                                             <td>{{ report.checkout_time}}</td>
+                                              <td> <btn class="btn btn-success disabled"> checked-out </btn> </td>
+                                              {% else %}
+                                            <td> - </td>
+                                            <td> <btn class="btn btn-warning disabled"> checked - in </btn> </td>
+                                              {% endif %}
+                                            </tr>
+                                             {% endfor %}
+                                        </table>
+                                         </div>
+                                        <button class="btn btn-primary btn-lg col-md-offset-1 printbtn"><span class="fa fa-print"> Print</span></button>
+                                        {% else %}
+                                      <p class="col-md-offset-5">No available info</p>
+                                   {% endif %}
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+{% include 'admin_dashboard/includes/footer.html' %}

@@ -80,6 +80,7 @@
                                                            <th>Role</th>
                                                            <th>User name</th>
                                                            <th>Created at</th>
+                                                           <th>Status</th>
                                                            </thead>
                                                           <tbody>
 
@@ -90,7 +91,10 @@
                                                                <td>{{ admin.user.lname }}</td>
                                                                <td>{{admin.user.role.rolename }}</td>
                                                                <td>{{admin.username}}</td>
-                                                               <td>{{admin.date_joined}}</td>
+                                                               <td>{{admin.date_joined|date:"d-m-Y h:m"}}</td>
+                                                             <td><input type="checkbox" checked data-toggle="toggle" data-size="sm"></td>
+
+
 
                                                             </tr>
 
