@@ -230,7 +230,7 @@
 
              });
 
- $('.printbtn').click(function(){   // Print custom area
+ $('.printbtnReport').click(function(){   // Print custom area
         $('.printtitle').css('text-align','center');
         $('.PrintArea').print()
 
