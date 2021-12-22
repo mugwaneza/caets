@@ -346,5 +346,40 @@ $(".datasorting").change(function () {      // When sort option is selected get 
 
 */
 
+$(".chatbtn").click(function() {
 
+            $name = $(".names").val();                                                   // get user input from the form
+            $email = $(".email").val();                                                   // get user input from the form
+
+
+         $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+
+        $.ajax({
+                type: "post",
+                url: "/client/chat/post",
+                async: false,
+      contentType: "application/json; charset=utf-8",
+      dataType: "json",
+            data: {
+                    names:$name,
+                    eamail:$email,
+                   csrfmiddlewaretoken: window.CSRF_TOKEN
+
+                },
+                success: function (success) {
+                                   console.log("success")
+
+                },
+               error:function (err) {
+                     console.log(err);
+
+                }
+             });
+
+             });
 

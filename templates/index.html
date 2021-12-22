@@ -1,5 +1,6 @@
 {% load static %}
  {% load i18n %}
+ <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 
   {% include "includes/head_header.html" %}
     <!-- Header End -->
@@ -72,10 +73,6 @@
                        </section>
 
 
-                            <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-                            Launch demo modal
-                            </button>
 
                             <!-- Modal -->
                             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -101,8 +98,41 @@
 
     <!-- Deal Of The Week Section End -->
 
+    <!-- chat Begin -->
+    <section class="chat button">
+
+   <div class="container buttoncontainer" >
+      <input type="checkbox" id="check"> <label class="chat-btn" for="check">
+        <i class="fa fa-commenting-o comment"></i>
+        <i class="fa fa-close close"></i>
+      </label>
+  <div class="wrapper">
+    <div class="chatformheader text-white">
+        <h6>Online Chat</h6>
+    </div>
+    <div class="text-center p-2 text-dark"> <span>Please fill out the form to start chat!</span> </div>
+    <div class="chat-form">
+        <form  autocomplete="off" method="post" action="{% url 'chatpost' %}" enctype="multipart/form-data">
+           {%csrf_token%}
+        <input type="text" class="form-control name" name="name" placeholder="Name">
+        <input type="text" class="form-control email" name="email" placeholder="Email" >
+        <textarea class="form-control" name="message" placeholder="Your Text Message"></textarea>
+        <label>Attachement<input type="file" class="form-control" name="myfile"></label>
+{#        <button class="btn btn-success btn-block chatbtn" type="submit">Submit</button>#}
+        <button class="btn btn-success btn-block " type="submit">Submit</button>
+      </form>
+    </div>
+      </div>
+      </div>
+</section>
+
+
+    <!-- End chat -->
+
     <!-- Latest Blog Section Begin -->
     <section class="latest-blog spad">
+
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -314,6 +344,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
         </div>
     </footer>
     <!-- Footer Section End -->
+ <script type="text/javascript"> window.CSRF_TOKEN = "{{ csrf_token }}"; </script>
 
     <!-- Js Plugins -->
     <script src="{% static 'js/jquery-3.3.1.min.js' %}"></script>
