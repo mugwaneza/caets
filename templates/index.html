@@ -115,9 +115,9 @@
         <form  autocomplete="off" method="post" action="{% url 'chatpost' %}" enctype="multipart/form-data">
            {%csrf_token%}
         <input type="text" class="form-control name" name="name" placeholder="Name">
-        <input type="text" class="form-control email" name="email" placeholder="Email" >
+        <input type="email" class="form-control email" name="email" placeholder="Email" >
         <textarea class="form-control" name="message" placeholder="Your Text Message"></textarea>
-        <label>Attachement<input type="file" class="form-control" name="myfile"></label>
+        <label>Attachement<input type="file" class="form-control" name="myfile" accept="image/png, image/gif, image/jpeg"></label>
 {#        <button class="btn btn-success btn-block chatbtn" type="submit">Submit</button>#}
         <button class="btn btn-success btn-block " type="submit">Submit</button>
       </form>

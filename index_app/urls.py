@@ -1,5 +1,6 @@
 from django.urls import path
-from index_app.views import Home, Booking, About, SearchBooking, ClientChatPost, Test
+from admin_app.views import Test
+from index_app.views import Home, Booking, About, SearchBooking, ClientChatPost
 
 
 urlpatterns =[

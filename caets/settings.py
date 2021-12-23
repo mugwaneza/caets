@@ -188,7 +188,7 @@ USE_I18N = True
 
 USE_L10N = True
 
-USE_TZ = True
+USE_TZ = False
 
 
 # Static files (CSS, JavaScript, Images)
@@ -203,7 +203,7 @@ STATICFILES_DIRS = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'assets')     #collects all assets files  (gathering assets files in a single directory so you can serve them easily)
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')# Used to get media items from web server
-MEDIA_URL = 'media/'               # Used to include media items in web pages
+MEDIA_URL = '/media/'               # Used to include media items in web pages
 
 try:
     from django.contrib.messages import constants as messages

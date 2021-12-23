@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.staticfiles.storage import staticfiles_storage
+from django.core.files.storage import FileSystemStorage
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect
@@ -62,12 +63,21 @@ def SearchBooking(request ):
 
         return render(request, 'searchresults.html', {'searchres' : searchres})
 
+def PKIGen(request ):
 
-def ClientChatPost(request ):
+   Pphrase = "RwandaCiberSecurityAgency52"
+   gpg = gnupg.GPG(gnupghome='C:/Users/alexis.mugwaneza/Desktop/crypto/')
+   gpg.encoding = 'utf-8'
+   input_data = gpg.gen_key_input(key_type="RSA", key_length=1024, name_email='testgpguser@mydomain.com',
+   passphrase=Pphrase)    #Specifying parameters while creating the key
+   keyids = gpg.gen_key(input_data)   # generate PKI Key
+   #ascii_armored_public_keys = gpg.export_keys(keyids) # same as gpg.export_keys(keyids, False)
+   #ascii_armored_private_keys = gpg.export_keys(keyids, True) # True => private keys
 
+def Chat_operation(request ):
 
-    if request.method == 'POST':
-
+        #Pass chat info to the database
+        Pphrase = "RwandaCiberSecurityAgency52"
         #Save user chat name and email
         visitorchat = visitor_chat()
         visitorchat.names = request.POST.get('name')
@@ -75,55 +85,63 @@ def ClientChatPost(request ):
         visitorchat.save()   #Save to visitor chat table
         done_by = visitor_chat.objects.latest('id')  #Get the user last inserted id
 
-        # gpg = gnupg.GPG(gnupghome='C:/Users/alexis.mugwaneza/Desktop/crypto/')
-        # gpg.encoding = 'utf-8'
-        # Pphrase = get_random_string(length=32)
-        #
-        # input_data = gpg.gen_key_input(key_type="RSA", key_length=1024, name_email='testgpguser@mydomain.com',
-        # passphrase=Pphrase)    #Specifying parameters while creating the key
-
-        # keyids = gpg.gen_key(input_data)   # generate PKI Key
-        # ascii_armored_public_keys = gpg.export_keys(keyids) # same as gpg.export_keys(keyids, False)
-        # ascii_armored_private_keys = gpg.export_keys(keyids, True) # True => private keys
-        #
-
-        #Save user chat encrypted message
-        visitorchatmessage =  visitor_chat_message()
-
         gpg = gnupg.GPG(gnupghome='C:/Users/alexis.mugwaneza/Desktop/crypto')
 
-        unencrypted_string = 'Who are you? How did you get in my house?'
-        encrypted_data = gpg.encrypt(unencrypted_string, 'testgpguser@mydomain.com')
+        #Save user chat encrypted message
+        visitorchatmessage =  visitor_chat_message() #invoque model
+        textmessage = request.POST.get('message')
+        inputfile = request.FILES['myfile']
+        encrypted_file = gpg.encrypt_file(inputfile, recipients=['testgpguser@mydomain.com']) #encrypt a file
+
+        fss = FileSystemStorage()
+        # file = fss.save(encrypted_file, encrypted_file)  # svae encrypted file to the server path
+        # file_url = fss.url(file)        #get file's path
+
+        encrypted_data = gpg.encrypt(textmessage, 'testgpguser@mydomain.com') #encrypt text message
         encrypted_string = str(encrypted_data)
-        print ( 'encrypted string well: ', encrypted_string)
-
-        message = request.POST.get('message')
-        email =   request.POST.get('email')
-
-        # encrypted_data = gpg.encrypt(message, email) # Encrypt a string
-        # encrypted_mess = str(encrypted_data)
 
         visitorchatmessage.posted_by_id = done_by
         visitorchatmessage.encrypted_message = encrypted_string
-        visitorchatmessage.encrypted_file_path = 'C:/Users/alexis.mugwaneza/Desktop/crypto'
+        # visitorchatmessage.encrypted_file_path = encrypted_file     #Save the path to database
         visitorchatmessage.save()
 
+        # decryptedfie = gpg.decrypt_file(encrypted_file, passphrase=Pphrase)
+        # file = fss.save(decryptedfie.name, decryptedfie)
+
+        #print ('File is encrypted ', encrypted_file)
+        print ('ok:', encrypted_file.ok)
+        print ('status:', encrypted_file.status)
+        print ('ok:', encrypted_data.ok)
+        print ('status:', encrypted_data.status)
 
 
+def ClientChatPost(request ):
+
+    if request.method == 'POST':
+
+      rs = visitor_chat.objects.filter().all()
+      if not rs :   #Check if  no PKI generated
+
+        PKIGen(request)     # request PKI generation if it is not generated
+        Chat_operation(request)
         return redirect('chatpost')
 
-        #Pass chat info to the database
+      else:
 
+       Chat_operation(request)
+       return redirect('chatpost')
     else:
-    #
-    #
-    #
-    #     # return HttpResponse(import_result.results)
+
+        # return HttpResponse(import_result.results)
         return render(request, 'index.html')
 
 
 
-def Test(request):
+
+
+
+
+def Teslt(request):
 
     gpg = gnupg.GPG(gnupghome='C:/Users/alexis.mugwaneza/Desktop/crypto')
     unencrypted_string = 'Who are you? How did you get in my house?'
