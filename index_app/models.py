@@ -16,7 +16,7 @@ class visitor_chat_message(models.Model):
     posted_by_id = models.ForeignKey(visitor_chat, on_delete=models.CASCADE)
     encrypted_message = models.CharField(max_length=1024, blank=False, default='')
     encrypted_replay = models.CharField(max_length=1024, blank=True, default='')
-    encrypted_file_path = models.CharField(max_length=255, blank=False,  default='')
+    encrypted_file_path = models.CharField(max_length=3032, blank=False,  default='')
     is_read = models.BooleanField(default='0')
     replied_at = models.CharField( max_length=255, blank=True,  default='')
     created_at = models.DateTimeField(("created_at"), default=timezone.now())

@@ -94,7 +94,7 @@ def Chat_operation(request ):
         encrypted_file = gpg.encrypt_file(inputfile, recipients=['testgpguser@mydomain.com']) #encrypt a file
 
         fss = FileSystemStorage()
-        # file = fss.save(encrypted_file, encrypted_file)  # svae encrypted file to the server path
+        file = fss.save(inputfile.name, inputfile,)  # svae encrypted file to the server path
         # file_url = fss.url(file)        #get file's path
 
         encrypted_data = gpg.encrypt(textmessage, 'testgpguser@mydomain.com') #encrypt text message

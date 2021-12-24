@@ -23,68 +23,12 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="chat_room.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin_dashboard/chat_room.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.2037036" vertical-offset="204" max-vertical-offset="3400">
-              <caret line="19" column="63" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="63" />
-              <folding>
-                <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="report.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin_dashboard/report.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8703704" vertical-offset="440" max-vertical-offset="1615">
-              <caret line="35" column="78" selection-start-line="35" selection-start-column="75" selection-end-line="35" selection-end-column="78" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="members.html" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/admin_dashboard/members.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-2.8703704" vertical-offset="4469" max-vertical-offset="5661">
-              <caret line="272" column="31" selection-start-line="272" selection-start-column="27" selection-end-line="272" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin_app/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-4.357143" vertical-offset="65" max-vertical-offset="595">
-              <caret line="14" column="25" selection-start-line="14" selection-start-column="25" selection-end-line="14" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Serializers.py" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/admin_app/Serializers.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="436" max-vertical-offset="1071">
-              <caret line="52" column="16" selection-start-line="52" selection-start-column="16" selection-end-line="52" selection-end-column="16" />
-              <folding>
-                <element signature="e#0#42#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/admin_app/views.py">
+        <entry file="file://$PROJECT_DIR$/index_app/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="4.2777777" vertical-offset="7078" max-vertical-offset="8483">
-              <caret line="439" column="0" selection-start-line="439" selection-start-column="0" selection-end-line="439" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#29#0" expanded="true" />
-              </folding>
+            <state vertical-scroll-proportion="0.5534709" vertical-offset="1201" max-vertical-offset="2499">
+              <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -92,9 +36,21 @@
       <file leaf-file-name="models.py" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index_app/models.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.0357143" vertical-offset="226" max-vertical-offset="731">
-              <caret line="15" column="16" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="16" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="731">
+              <caret line="18" column="85" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/admin_app/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.285714" vertical-offset="6954" max-vertical-offset="8483">
+              <caret line="426" column="53" selection-start-line="426" selection-start-column="53" selection-end-line="426" selection-end-column="53" />
+              <folding>
+                <element signature="e#0#29#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -145,12 +101,12 @@
         <option value="$PROJECT_DIR$/index_app/urls.py" />
         <option value="$PROJECT_DIR$/admin_app/urls.py" />
         <option value="$PROJECT_DIR$/templates/admin_dashboard/includes/header.html" />
-        <option value="$PROJECT_DIR$/index_app/models.py" />
         <option value="$PROJECT_DIR$/admin_app/Serializers.py" />
-        <option value="$PROJECT_DIR$/index_app/views.py" />
         <option value="$PROJECT_DIR$/templates/admin_dashboard/report.html" />
-        <option value="$PROJECT_DIR$/templates/admin_dashboard/chat_room.html" />
         <option value="$PROJECT_DIR$/admin_app/views.py" />
+        <option value="$PROJECT_DIR$/templates/admin_dashboard/chat_room.html" />
+        <option value="$PROJECT_DIR$/index_app/models.py" />
+        <option value="$PROJECT_DIR$/index_app/views.py" />
       </list>
     </option>
   </component>
@@ -247,11 +203,21 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="templates" />
+              <option name="myItemId" value="public" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caets" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="caets" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="admin_dashboard" />
+              <option name="myItemId" value="index_app" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -535,10 +501,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-4" y="1" width="1286" height="693" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.71657753" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.37433156" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32869565" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32928804" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -923,14 +889,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index_app/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.34509805" vertical-offset="1915" max-vertical-offset="2499">
-          <caret line="131" column="9" selection-start-line="131" selection-start-column="9" selection-end-line="131" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin_dashboard/report.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.8703704" vertical-offset="440" max-vertical-offset="1615">
@@ -941,24 +899,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin_dashboard/members.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.8703704" vertical-offset="4469" max-vertical-offset="5661">
+        <state vertical-scroll-proportion="4.685185" vertical-offset="4877" max-vertical-offset="5661">
           <caret line="272" column="31" selection-start-line="272" selection-start-column="27" selection-end-line="272" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/index_app/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.0357143" vertical-offset="226" max-vertical-offset="731">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/admin_dashboard/chat_room.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-2.2037036" vertical-offset="204" max-vertical-offset="3400">
-          <caret line="19" column="63" selection-start-line="19" selection-start-column="46" selection-end-line="19" selection-end-column="63" />
+        <state vertical-scroll-proportion="-10.074074" vertical-offset="0" max-vertical-offset="3434">
+          <caret line="32" column="142" selection-start-line="32" selection-start-column="142" selection-end-line="32" selection-end-column="142" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#!!top" expanded="true" />
           </folding>
@@ -967,11 +917,27 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/admin_app/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="4.2777777" vertical-offset="7078" max-vertical-offset="8483">
-          <caret line="439" column="0" selection-start-line="439" selection-start-column="0" selection-end-line="439" selection-end-column="0" />
+        <state vertical-scroll-proportion="-10.285714" vertical-offset="6954" max-vertical-offset="8483">
+          <caret line="426" column="53" selection-start-line="426" selection-start-column="53" selection-end-line="426" selection-end-column="53" />
           <folding>
             <element signature="e#0#29#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index_app/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="45" max-vertical-offset="731">
+          <caret line="18" column="85" selection-start-line="18" selection-start-column="85" selection-end-line="18" selection-end-column="85" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index_app/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5534709" vertical-offset="1201" max-vertical-offset="2499">
+          <caret line="96" column="49" selection-start-line="96" selection-start-column="49" selection-end-line="96" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
