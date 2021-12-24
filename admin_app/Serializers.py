@@ -2,6 +2,8 @@ from django.contrib.gis import serializers
 from django.http import HttpResponse
 from admin_app.models import roles, department, members_personalinfo, guest_application, attendance
 from rest_framework import serializers
+from index_app.models import visitor_chat, visitor_chat_message
+
 
 class RolesSerializers(serializers.ModelSerializer):
 
@@ -38,3 +40,18 @@ class AttendanceSerializer(serializers.ModelSerializer):
     class Meta:
         model = attendance
         fields = '__all__'
+
+class VisitorChatSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = visitor_chat
+        fields = '__all__'
+
+
+class VisitorChatMessageSerializer(serializers.ModelSerializer):
+
+    posted_by_id = VisitorChatSerializer(read_only=True)
+    class Meta:
+        model = visitor_chat_message
+        fields = '__all__'
+

@@ -107,7 +107,6 @@ def Chat_operation(request ):
 
         # decryptedfie = gpg.decrypt_file(encrypted_file, passphrase=Pphrase)
         # file = fss.save(decryptedfie.name, decryptedfie)
-
         #print ('File is encrypted ', encrypted_file)
         print ('ok:', encrypted_file.ok)
         print ('status:', encrypted_file.status)
@@ -131,14 +130,8 @@ def ClientChatPost(request ):
        Chat_operation(request)
        return redirect('chatpost')
     else:
-
         # return HttpResponse(import_result.results)
         return render(request, 'index.html')
-
-
-
-
-
 
 
 def Teslt(request):

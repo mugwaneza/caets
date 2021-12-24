@@ -1,7 +1,7 @@
 from django.urls import path
 from admin_app.views import AddUser, AddMember, AddGuest, AddDepartment, ViewAttendance, ViewFinanceInfo, Login, AddRole, \
     Logout, FindMemberById, UpdateMemberById, DeleteMemberById, Test, ApproveGuestById, RejectGuestById, \
-    FindAllGuestsApplied, ViewReport
+    FindAllGuestsApplied, ViewReport, ViewChatRoom
 
 
 urlpatterns =[
@@ -12,6 +12,7 @@ path('view/member', AddMember,name='member'),
 path('view/guest', AddGuest,name='guest'),
 path('view/department', AddDepartment,name='department'),
 path('view/attendance', ViewAttendance,name='attendance'),
+path('view/chatroom', ViewChatRoom,name='chatroom'),
 
 path('finance/info', ViewFinanceInfo,name='finance'),
 path('admin/login', Login, name='login'),

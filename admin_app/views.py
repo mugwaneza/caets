@@ -3,16 +3,21 @@ from django.contrib import messages
 from django.contrib.auth import logout
 from django.contrib.auth.hashers import make_password, check_password
 from django.db.models import Q
-from django.http import HttpResponseRedirect, JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse, HttpResponse
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
-from admin_app.Serializers import MembersSerializer, AttendanceSerializer, GuestApplicationSerializer
+import gnupg
+from admin_app.Serializers import MembersSerializer, AttendanceSerializer, GuestApplicationSerializer, \
+    VisitorChatMessageSerializer,VisitorChatSerializer
 
 from admin_app.models import department, roles, guest_application, members_personalinfo, finance_info, profiles, users,attendance
 
 
 
 # Create your views here.
+from index_app.models import visitor_chat_message, visitor_chat
+
+
 def Login (request):      #Admin Login
 
  if request.session.get('admin_session'):
@@ -400,6 +405,49 @@ def ViewReport(request ):
     return render(request, 'admin_dashboard/report.html', {'all_attendees' : all_attendees} )
 
 
+def ViewChatRoom(request ):
+
+ if not request.session.get('admin_session'):
+    return render(request, 'admin_dashboard/login.html')
+
+ else:
+
+
+    Allchatmessage = VisitorChatMessageSerializer(visitor_chat_message.objects.filter().all(), many=True )
+    Allchatmessage2 = VisitorChatSerializer(visitor_chat.objects.filter().all(), many=True )
+
+    pass_phrase = "RwandaCiberSecurityAgency52"
+    gpg = gnupg.GPG(gnupghome='C:/Users/alexis.mugwaneza/Desktop/crypto')
+
+
+
+
+    for i_mymessages  in Allchatmessage.data:
+
+       mymessages = i_mymessages['encrypted_message']
+       time = i_mymessages['created_at']
+       names = i_mymessages['posted_by_id']['names']
+       decrypted_messages = gpg.decrypt(mymessages, passphrase=pass_phrase) # decript a message
+
+
+
+       MessagesDataArray = [{"name":i_mymessages['posted_by_id']['names'], "message": str(gpg.decrypt(mymessages, passphrase=pass_phrase)), "time":i_mymessages['created_at']},]  #rebuild json array
+
+       print(MessagesDataArray)
+       # return  JsonResponse(MessagesDataArray, safe=False)
+
+       return render(request, 'admin_dashboard/chat_room.html',{'MessagesDataArray' : MessagesDataArray})
+
+
+
+
+def ViewReport(request ):
+
+    all_attendees = AttendanceSerializer(attendance.objects.filter().all(), many=True )
+
+    return render(request, 'admin_dashboard/report.html', {'all_attendees' : all_attendees} )
+
+
 def ViewFinanceInfo(request ):
 
  # if not request.session.get('user_session'):
@@ -443,5 +491,4 @@ def ViewFinanceInfo(request ):
 def Test(request):
 
     message = members_personalinfo.objects.filter(id=1).delete()
-
     return  message
